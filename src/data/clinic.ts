@@ -470,13 +470,14 @@ export function doctorsForDepartment(slug: string) {
 
 export function isAvailableToday(schedule: string, day = new Date().getDay()) {
   const map = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const today = map[day];
-  const part = schedule.split("(")[0];
+  const today = map[day] ?? "";
+  const part = schedule.split("(")[0] ?? "";
   if (part.includes("-")) {
-    const [start, end] = part.trim().split("-");
+    const [start = "", end = ""] = part.trim().split("-");
     const si = map.indexOf(start.trim());
     const ei = map.indexOf(end.trim());
     if (si >= 0 && ei >= 0) return day >= si && day <= ei;
   }
   return part.includes(today);
 }
+
