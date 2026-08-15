@@ -21,7 +21,7 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 w-full">
       <div className="hidden bg-brand-dark text-primary-foreground md:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 text-xs">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 pl-40 text-xs">
           <p className="opacity-90">{clinic.address}</p>
           <div className="flex items-center gap-5">
             <span className="inline-flex items-center gap-1.5 opacity-90">
