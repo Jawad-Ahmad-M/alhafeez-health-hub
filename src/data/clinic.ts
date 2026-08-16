@@ -173,6 +173,10 @@ export const departments: Department[] = [
   },
 ];
 
+export type AvailabilityBlock = { days: number[]; start: string; end: string };
+
+export type ClinicLocation = { name: string; address: string; timings: string[] };
+
 export type Doctor = {
   slug: string;
   name: string;
@@ -183,7 +187,17 @@ export type Doctor = {
   departments: string[];
   photo?: string;
   featured?: boolean;
+  title?: string;
+  experienceYears?: number;
+  qualificationList?: string[];
+  positions?: string[];
+  achievements?: string[];
+  services?: string[];
+  books?: string[];
+  locations?: ClinicLocation[];
+  availability?: AvailabilityBlock[];
 };
+
 
 export const doctors: Doctor[] = [
   {
