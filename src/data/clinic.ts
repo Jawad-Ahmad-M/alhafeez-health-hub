@@ -556,3 +556,163 @@ export function isAvailableToday(schedule: string, day = new Date().getDay()) {
   return part.includes(today);
 }
 
+
+/* ── Department categories (as grouped on the live site) ────────────── */
+
+export type DepartmentCategory = {
+  slug: string;
+  name: string;
+  blurb: string;
+  departments: string[];
+};
+
+export const departmentCategories: DepartmentCategory[] = [
+  {
+    slug: "general-and-surgical",
+    name: "General & Surgical",
+    blurb: "Operative and procedural specialties, from routine surgery to advanced reconstruction.",
+    departments: [
+      "general-surgery",
+      "ent",
+      "eye-ophthalmology",
+      "dentistry",
+      "urology",
+      "plastic-surgery",
+      "neurosurgery",
+    ],
+  },
+  {
+    slug: "internal-medicine",
+    name: "Internal Medicine",
+    blurb: "Long-term medical management of the heart, chest, kidneys, gut, hormones and nerves.",
+    departments: [
+      "gastroenterology",
+      "nephrology",
+      "pulmonology",
+      "cardiology",
+      "endocrinology",
+      "neurology",
+    ],
+  },
+  {
+    slug: "specialized-care",
+    name: "Specialized Care",
+    blurb: "Focused clinics for cancer care, joints, women's health, children and skin.",
+    departments: ["oncology", "rheumatology", "gynaecology", "pediatrics", "dermatology"],
+  },
+  {
+    slug: "medicine-and-diagnostics",
+    name: "Medicine & Diagnostics",
+    blurb: "Imaging, rehabilitation and psychological support that complete your treatment plan.",
+    departments: ["radiology", "physiotherapy", "clinical-psychology"],
+  },
+];
+
+export function departmentsInCategory(category: DepartmentCategory) {
+  return category.departments
+    .map((slug) => departments.find((d) => d.slug === slug))
+    .filter((d): d is Department => Boolean(d));
+}
+
+/* ── Availability helpers ──────────────────────────────────────────── */
+
+export const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const DAY_SHORT = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+export function toMinutes(time: string) {
+  const m = time.trim().match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+  if (!m) return 0;
+  let h = Number(m[1]) % 12;
+  if ((m[3] ?? "").toUpperCase() === "PM") h += 12;
+  return h * 60 + Number(m[2]);
+}
+
+export function formatMinutes(total: number) {
+  const h24 = Math.floor(total / 60);
+  const mm = String(total % 60).padStart(2, "0");
+  const suffix = h24 >= 12 ? "PM" : "AM";
+  const h = h24 % 12 === 0 ? 12 : h24 % 12;
+  return `${h}:${mm} ${suffix}`;
+}
+
+/** Parses strings like "Mon-Sat (9:00 AM - 2:00 PM)" or "Mon, Wed, Fri (5:00 PM - 8:00 PM)". */
+export function parseSchedule(schedule: string): AvailabilityBlock[] {
+  const match = schedule.match(/^([^(]+)\(([^)]+)\)$/);
+  if (!match) return [];
+  const dayPart = (match[1] ?? "").trim();
+  const timePart = (match[2] ?? "").trim();
+  const [start, end] = timePart.split(/\s*[-–]\s*/);
+  if (!start || !end) return [];
+
+  const days: number[] = [];
+  if (dayPart.includes("-")) {
+    const [a = "", b = ""] = dayPart.split("-");
+    const si = DAY_SHORT.indexOf(a.trim().slice(0, 3));
+    const ei = DAY_SHORT.indexOf(b.trim().slice(0, 3));
+    if (si >= 0 && ei >= 0) for (let i = si; i <= ei; i++) days.push(i);
+  } else {
+    for (const token of dayPart.split(",")) {
+      const i = DAY_SHORT.indexOf(token.trim().slice(0, 3));
+      if (i >= 0) days.push(i);
+    }
+  }
+  if (days.length === 0) return [];
+  return [{ days, start, end }];
+}
+
+export function doctorAvailability(doctor: Doctor): AvailabilityBlock[] {
+  return doctor.availability && doctor.availability.length > 0
+    ? doctor.availability
+    : parseSchedule(doctor.schedule);
+}
+
+export function blockForDay(doctor: Doctor, weekday: number) {
+  return doctorAvailability(doctor).find((b) => b.days.includes(weekday));
+}
+
+export function formatBlockDays(block: AvailabilityBlock) {
+  return block.days
+    .slice()
+    .sort((a, b) => a - b)
+    .map((d) => DAY_NAMES[d])
+    .join(", ");
+}
+
+export function toISODate(date: Date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+/** Upcoming dates (including today) on which the doctor holds a clinic. */
+export function availableDates(doctor: Doctor, horizonDays = 30) {
+  const out: { iso: string; date: Date; block: AvailabilityBlock }[] = [];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  for (let i = 0; i < horizonDays; i++) {
+    const date = new Date(today);
+    date.setDate(today.getDate() + i);
+    const block = blockForDay(doctor, date.getDay());
+    if (block) out.push({ iso: toISODate(date), date, block });
+  }
+  return out;
+}
+
+/** 30-minute slots strictly inside the doctor's window for that date. */
+export function slotsForDate(doctor: Doctor, iso: string, stepMinutes = 30) {
+  const [y, m, d] = iso.split("-").map(Number);
+  if (!y || !m || !d) return [];
+  const date = new Date(y, m - 1, d);
+  const block = blockForDay(doctor, date.getDay());
+  if (!block) return [];
+  const start = toMinutes(block.start);
+  const end = toMinutes(block.end);
+  const slots: string[] = [];
+  for (let t = start; t + stepMinutes <= end; t += stepMinutes) slots.push(formatMinutes(t));
+  return slots;
+}
+
+export function isAvailableTodayDoctor(doctor: Doctor, weekday = new Date().getDay()) {
+  return Boolean(blockForDay(doctor, weekday));
+}
