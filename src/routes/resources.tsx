@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Car, Clock, Languages, Accessibility, Phone } from "lucide-react";
 
 import {
@@ -8,7 +8,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { useBooking } from "@/components/site/booking";
 import { clinic, faqs } from "@/data/clinic";
 
 export const Route = createFileRoute("/resources")({
@@ -38,7 +37,6 @@ const FACILITIES = [
 ];
 
 function ResourcesPage() {
-  const booking = useBooking();
 
   return (
     <>
@@ -79,7 +77,7 @@ function ResourcesPage() {
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-accent/60 p-6">
           <p className="text-sm font-medium text-foreground">Still have a question? Our reception is happy to help.</p>
           <div className="flex gap-3">
-            <Button onClick={() => booking.open()}>Book Appointment</Button>
+            <Button asChild><Link to="/book">Book Appointment</Link></Button>
             <Button asChild variant="outline">
               <a href={`tel:${clinic.phoneRaw}`}>
                 <Phone className="size-4" aria-hidden /> {clinic.phone}

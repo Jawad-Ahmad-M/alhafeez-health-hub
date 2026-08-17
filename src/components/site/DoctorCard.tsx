@@ -51,11 +51,19 @@ export function DoctorCard({ doctor }: { doctor: Doctor }) {
           <span className={available ? "size-1.5 rounded-full bg-success" : "size-1.5 rounded-full bg-primary"} />
           {available ? "Available today" : "Not available today"}
         </span>
-        <Button asChild size="sm" variant="outline">
-          <Link to="/doctors/$slug" params={{ slug: doctor.slug }}>
-            View Profile
-          </Link>
-        </Button>
+        <div className="flex gap-2">
+          <Button asChild size="sm" variant="outline">
+            <Link to="/doctors/$slug" params={{ slug: doctor.slug }}>
+              Profile
+            </Link>
+          </Button>
+          <Button asChild size="sm">
+            <Link to="/book/$slug" params={{ slug: doctor.slug }}>
+              Book
+            </Link>
+          </Button>
+        </div>
+
       </div>
     </article>
   );

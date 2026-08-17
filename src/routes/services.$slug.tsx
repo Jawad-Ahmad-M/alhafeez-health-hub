@@ -4,7 +4,6 @@ import { ArrowLeft, CheckCircle2, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DeptIcon } from "@/components/site/icons";
 import { DoctorCard } from "@/components/site/DoctorCard";
-import { useBooking } from "@/components/site/booking";
 import { clinic, departments, doctorsForDepartment } from "@/data/clinic";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -47,7 +46,6 @@ function ServiceNotFound() {
 
 function ServiceDetail() {
   const { department, docs } = Route.useLoaderData();
-  const booking = useBooking();
 
   return (
     <>
@@ -86,8 +84,10 @@ function ServiceDetail() {
         <aside className="h-fit rounded-2xl border border-border bg-card p-6 shadow-card">
           <h2 className="text-lg font-bold text-foreground">Book a Consultation</h2>
           <p className="mt-2 text-sm text-muted-foreground">{clinic.hours}</p>
-          <Button className="mt-5 w-full" size="lg" onClick={() => booking.open({ departmentSlug: department.slug })}>
-            Book a Consultation
+          <Button asChild className="mt-5 w-full" size="lg">
+            <Link to="/book">
+              Book a Consultation
+            </Link>
           </Button>
           <Button asChild variant="outline" size="lg" className="mt-3 w-full">
             <a href={`tel:${clinic.phoneRaw}`}>

@@ -4,7 +4,6 @@ import { Clock, Menu, Phone, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { clinic } from "@/data/clinic";
-import { useBooking } from "@/components/site/booking";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -16,7 +15,6 @@ const NAV = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const booking = useBooking();
 
   return (
     <header className="sticky top-0 z-40 w-full">
@@ -68,8 +66,8 @@ export function Header() {
                 <Phone className="size-4" aria-hidden /> Call
               </a>
             </Button>
-            <Button onClick={() => booking.open()} className="hidden sm:inline-flex">
-              Book Appointment
+            <Button asChild className="hidden sm:inline-flex">
+              <Link to="/book">Book Appointment</Link>
             </Button>
             <button
               type="button"
@@ -100,14 +98,10 @@ export function Header() {
                 </li>
               ))}
             </ul>
-            <Button
-              className="mt-3 w-full"
-              onClick={() => {
-                setOpen(false);
-                booking.open();
-              }}
-            >
-              Book Appointment
+            <Button asChild className="mt-3 w-full">
+              <Link to="/book" onClick={() => setOpen(false)}>
+                Book Appointment
+              </Link>
             </Button>
           </nav>
         )}

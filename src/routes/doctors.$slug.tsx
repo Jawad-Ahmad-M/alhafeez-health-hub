@@ -1,9 +1,28 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, CalendarDays, GraduationCap, MapPin, Phone, Wallet } from "lucide-react";
+import {
+  Activity,
+  ArrowLeft,
+  Award,
+  BookOpen,
+  Briefcase,
+  CalendarDays,
+  GraduationCap,
+  MapPin,
+  MessageCircle,
+  Phone,
+  Star,
+  Wallet,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { useBooking } from "@/components/site/booking";
-import { clinic, departments, doctors, isAvailableToday } from "@/data/clinic";
+import {
+  clinic,
+  departments,
+  doctorAvailability,
+  doctors,
+  formatBlockDays,
+  isAvailableTodayDoctor,
+} from "@/data/clinic";
 
 export const Route = createFileRoute("/doctors/$slug")({
   loader: ({ params }) => {
@@ -26,6 +45,8 @@ export const Route = createFileRoute("/doctors/$slug")({
         { name: "description", content: description },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
+        { property: "og:type", content: "profile" },
+        { name: "twitter:card", content: "summary_large_image" },
       ],
     };
   },
@@ -45,74 +66,159 @@ function DoctorNotFound() {
   );
 }
 
+function Card({
+  icon: Icon,
+  title,
+  children,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+      <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
+        <Icon className="size-5 text-primary" aria-hidden />
+        {title}
+      </h2>
+      <div className="mt-4">{children}</div>
+    </div>
+  );
+}
+
 function DoctorProfile() {
   const { doctor } = Route.useLoaderData();
-  const booking = useBooking();
-  const available = isAvailableToday(doctor.schedule);
+  const available = isAvailableTodayDoctor(doctor);
   const depts = departments.filter((d) => doctor.departments.includes(d.slug));
+  const blocks = doctorAvailability(doctor);
+  const whatsapp = `https://wa.me/${clinic.phoneRaw.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(
+    `Assalam o Alaikum, I would like to book an appointment with ${doctor.name}.`,
+  )}`;
 
   return (
     <>
       <section className="brand-gradient text-primary-foreground">
-        <div className="mx-auto max-w-5xl px-4 py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <Link to="/doctors" className="inline-flex items-center gap-2 text-sm opacity-85 hover:underline">
             <ArrowLeft className="size-4" aria-hidden /> All doctors
           </Link>
           <h1 className="mt-5 text-3xl font-bold sm:text-4xl">{doctor.name}</h1>
           <p className="mt-2 text-lg opacity-95">{doctor.specialty}</p>
-          <span
-            className={
-              available
-                ? "mt-4 inline-flex items-center gap-2 rounded-full bg-primary-foreground/15 px-3 py-1 text-xs font-semibold"
-                : "mt-4 inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-semibold opacity-85"
-            }
-          >
-            <span className="size-1.5 rounded-full bg-primary-foreground" />
-            {available ? "Available today" : "Not available today"}
-          </span>
+          {doctor.title && <p className="mt-1 text-sm opacity-85">{doctor.title}</p>}
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {doctor.experienceYears && (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-foreground/15 px-3 py-1 text-xs font-semibold">
+                <Star className="size-3.5" aria-hidden /> {doctor.experienceYears}+ Years Experience
+              </span>
+            )}
+            <span
+              className={
+                available
+                  ? "inline-flex items-center gap-2 rounded-full bg-primary-foreground/15 px-3 py-1 text-xs font-semibold"
+                  : "inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-semibold opacity-85"
+              }
+            >
+              <span className="size-1.5 rounded-full bg-primary-foreground" />
+              {available ? "Available today" : "Not available today"}
+            </span>
+          </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-5xl gap-6 px-4 py-12 lg:grid-cols-[1.4fr_1fr]">
+      <section className="mx-auto grid max-w-6xl gap-6 px-4 py-12 lg:grid-cols-[1.5fr_1fr]">
         <div className="space-y-5">
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
-            <h2 className="text-lg font-bold text-foreground">Profile</h2>
-            <dl className="mt-4 space-y-4 text-sm">
-              <div className="flex gap-3">
-                <GraduationCap className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
-                <div>
-                  <dt className="font-semibold text-foreground">Qualifications</dt>
-                  <dd className="text-muted-foreground">{doctor.qualifications}</dd>
-                </div>
+          <Card icon={GraduationCap} title="Qualifications">
+            {doctor.qualificationList?.length ? (
+              <ul className="grid gap-2 text-sm text-muted-foreground sm:grid-cols-2">
+                {doctor.qualificationList.map((q) => (
+                  <li key={q} className="flex gap-2">
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
+                    {q}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-sm text-muted-foreground">{doctor.qualifications}</p>
+            )}
+          </Card>
+
+          {doctor.positions?.length ? (
+            <Card icon={Briefcase} title="Current Positions">
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                {doctor.positions.map((p) => (
+                  <li key={p} className="flex gap-2">
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          ) : null}
+
+          {doctor.achievements?.length ? (
+            <Card icon={Award} title="Achievements">
+              <div className="grid gap-3 sm:grid-cols-3">
+                {doctor.achievements.map((a) => (
+                  <p
+                    key={a}
+                    className="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground"
+                  >
+                    {a}
+                  </p>
+                ))}
               </div>
-              <div className="flex gap-3">
-                <CalendarDays className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
-                <div>
-                  <dt className="font-semibold text-foreground">Schedule</dt>
-                  <dd className="text-muted-foreground">{doctor.schedule}</dd>
-                </div>
+            </Card>
+          ) : null}
+
+          {doctor.services?.length ? (
+            <Card icon={Activity} title="Services Offered">
+              <div className="flex flex-wrap gap-2">
+                {doctor.services.map((s) => (
+                  <span
+                    key={s}
+                    className="rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground"
+                  >
+                    {s}
+                  </span>
+                ))}
               </div>
-              <div className="flex gap-3">
-                <Wallet className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
-                <div>
-                  <dt className="font-semibold text-foreground">Consultation fee</dt>
-                  <dd className="text-muted-foreground">PKR {doctor.fee.toLocaleString()}</dd>
-                </div>
+            </Card>
+          ) : null}
+
+          {doctor.locations?.length ? (
+            <Card icon={MapPin} title="Clinic Locations & Timings">
+              <div className="grid gap-4 sm:grid-cols-2">
+                {doctor.locations.map((loc) => (
+                  <div key={loc.name} className="rounded-xl border border-border p-4">
+                    <h3 className="text-sm font-bold text-foreground">{loc.name}</h3>
+                    <p className="mt-1 text-xs text-muted-foreground">{loc.address}</p>
+                    <ul className="mt-2 space-y-1 text-xs font-medium text-primary">
+                      {loc.timings.map((t) => (
+                        <li key={t}>{t}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-              <div className="flex gap-3">
-                <MapPin className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden />
-                <div>
-                  <dt className="font-semibold text-foreground">Location</dt>
-                  <dd className="text-muted-foreground">{clinic.address}</dd>
-                </div>
-              </div>
-            </dl>
-          </div>
+            </Card>
+          ) : null}
+
+          {doctor.books?.length ? (
+            <Card icon={BookOpen} title="Authored Books">
+              <ul className="space-y-2 text-sm text-muted-foreground">
+                {doctor.books.map((b) => (
+                  <li key={b} className="flex gap-2">
+                    <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-primary" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </Card>
+          ) : null}
 
           {depts.length > 0 && (
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
-              <h2 className="text-lg font-bold text-foreground">Departments</h2>
-              <div className="mt-4 flex flex-wrap gap-2">
+            <Card icon={MapPin} title="Departments">
+              <div className="flex flex-wrap gap-2">
                 {depts.map((d) => (
                   <Link
                     key={d.slug}
@@ -124,28 +230,53 @@ function DoctorProfile() {
                   </Link>
                 ))}
               </div>
-            </div>
+            </Card>
           )}
         </div>
 
-        <aside className="h-fit rounded-2xl border border-border bg-card p-6 shadow-card lg:sticky lg:top-32">
-          <h2 className="text-lg font-bold text-foreground">Book a consultation</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Reserve your slot online, or call the reception for the earliest availability.
-          </p>
-          <Button
-            size="lg"
-            className="mt-5 w-full"
-            onClick={() => booking.open({ doctorSlug: doctor.slug })}
-          >
-            Book Appointment with {doctor.name.replace(/^(Dr\.|Ms\.)\s*/, "")}
-          </Button>
-          <Button asChild variant="outline" size="lg" className="mt-3 w-full">
-            <a href={`tel:${clinic.phoneRaw}`}>
-              <Phone className="size-4" aria-hidden /> {clinic.phone}
-            </a>
-          </Button>
-          <p className="mt-4 text-xs text-muted-foreground">{clinic.hours}</p>
+        <aside className="h-fit space-y-4 lg:sticky lg:top-32">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+            <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
+              <CalendarDays className="size-5 text-primary" aria-hidden />
+              Clinic Schedule &amp; Fee
+            </h2>
+            <ul className="mt-4 space-y-3 text-sm">
+              {blocks.map((b) => (
+                <li key={`${b.start}-${b.days.join(",")}`} className="rounded-xl bg-accent/60 p-3">
+                  <p className="font-semibold text-foreground">{formatBlockDays(b)}</p>
+                  <p className="text-muted-foreground">
+                    {b.start} – {b.end}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 flex items-center gap-2 text-sm">
+              <Wallet className="size-4 text-primary" aria-hidden />
+              Consultation Fee:{" "}
+              <strong className="text-foreground">Rs. {doctor.fee.toLocaleString()}</strong>
+            </p>
+            <p className="mt-2 flex items-start gap-2 text-xs text-muted-foreground">
+              <MapPin className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden />
+              {clinic.address}
+            </p>
+
+            <Button asChild size="lg" className="mt-5 w-full">
+              <Link to="/book/$slug" params={{ slug: doctor.slug }}>
+                Book Appointment
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="mt-3 w-full">
+              <a href={whatsapp} target="_blank" rel="noreferrer">
+                <MessageCircle className="size-4" aria-hidden /> Book via WhatsApp
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="mt-3 w-full">
+              <a href={`tel:${clinic.phoneRaw}`}>
+                <Phone className="size-4" aria-hidden /> {clinic.phone}
+              </a>
+            </Button>
+            <p className="mt-4 text-xs text-muted-foreground">{clinic.hours}</p>
+          </div>
         </aside>
       </section>
     </>
