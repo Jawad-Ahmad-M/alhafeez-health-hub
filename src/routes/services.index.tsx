@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { Activity, ClipboardPlus, HeartPulse, Scissors } from "lucide-react";
 
 import { Reveal } from "@/components/site/Reveal";
 import { DeptIcon } from "@/components/site/icons";
-import { departmentCategories, departmentsInCategory, doctorsForDepartment } from "@/data/clinic";
+import { departmentCategories, departmentsInCategory } from "@/data/clinic";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -39,46 +39,42 @@ function ServicesPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl space-y-14 px-4 py-12">
-        {departmentCategories.map((cat) => {
-          const depts = departmentsInCategory(cat);
-          return (
-            <div key={cat.slug}>
-              <div className="flex flex-wrap items-end justify-between gap-3 border-b border-border pb-4">
-                <div>
-                  <h2 className="text-2xl font-bold text-foreground">{cat.name}</h2>
-                  <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{cat.blurb}</p>
-                </div>
-                <span className="text-sm font-semibold text-primary">{depts.length} departments</span>
-              </div>
-
-              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {depts.map((d, i) => {
-                  const count = doctorsForDepartment(d.slug).length;
-                  return (
-                    <Reveal key={d.slug} delay={(i % 3) * 60}>
-                      <Link
-                        to="/services/$slug"
-                        params={{ slug: d.slug }}
-                        className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-card"
-                      >
-                        <span className="flex size-12 items-center justify-center rounded-xl bg-accent text-primary">
-                          <DeptIcon name={d.icon} className="size-6" />
-                        </span>
-                        <h3 className="mt-4 text-lg font-bold text-foreground">{d.name}</h3>
-                        <p className="mt-2 flex-1 text-sm text-muted-foreground">{d.short}</p>
-                        <span className="mt-4 flex items-center justify-between text-sm font-semibold text-primary">
-                          {count > 0 ? `${count} specialist${count > 1 ? "s" : ""}` : "Consultation available"}
-                          <ArrowRight className="size-4" aria-hidden />
-                        </span>
-                      </Link>
-                    </Reveal>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
+      <section className="bg-[#fcf8f7] px-4 py-14 md:py-16">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {departmentCategories.map((category, i) => {
+              const categoryIcons = [Scissors, Activity, HeartPulse, ClipboardPlus];
+              const CategoryIcon = categoryIcons[i] ?? Activity;
+              const categoryDepartments = departmentsInCategory(category);
+              return (
+                <Reveal key={category.slug} delay={i * 70}>
+                  <article className="card-hover h-full rounded-3xl border border-primary/15 bg-card p-6 shadow-card">
+                    <CategoryIcon className="size-9 text-primary" aria-hidden />
+                    <h2 className="mt-5 border-l-4 border-primary pl-3 text-lg font-bold text-primary">
+                      {category.name}
+                    </h2>
+                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{category.blurb}</p>
+                    <ul className="mt-4 space-y-0">
+                      {categoryDepartments.map((department) => (
+                        <li key={department.slug} className="border-b border-dashed border-border last:border-0">
+                          <Link
+                            to="/services/$slug"
+                            params={{ slug: department.slug }}
+                            className="flex items-center gap-3 py-2 text-sm text-foreground transition-colors hover:text-primary"
+                          >
+                            <span className="text-primary">•</span>
+                            <span className="flex-1">{department.name}</span>
+                            <DeptIcon name={department.icon} className="size-4 text-muted-foreground" />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
       </section>
     </>
   );
