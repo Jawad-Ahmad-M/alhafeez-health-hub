@@ -12,9 +12,14 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
-import { DeptIcon } from "@/components/site/icons";
 import { DoctorCard } from "@/components/site/DoctorCard";
-import { clinic, departments, doctors, reviews } from "@/data/clinic";
+import {
+  clinic,
+  departmentCategories,
+  departmentsInCategory,
+  doctors,
+  reviews,
+} from "@/data/clinic";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -143,25 +148,36 @@ function HomePage() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {departments.map((d, i) => (
-            <Reveal key={d.slug} delay={(i % 4) * 60}>
-              <Link
-                to="/services/$slug"
-                params={{ slug: d.slug }}
-                className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card"
-              >
-                <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
-                  <DeptIcon name={d.icon} className="size-5" />
-                </span>
-                <h3 className="mt-4 text-base font-bold text-foreground">{d.name}</h3>
-                <p className="mt-2 flex-1 text-sm text-muted-foreground">{d.short}</p>
-                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                  Learn more <ArrowRight className="size-4" aria-hidden />
-                </span>
-              </Link>
-            </Reveal>
-          ))}
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {departmentCategories.map((category, i) => {
+            const categoryDepartments = departmentsInCategory(category);
+            return (
+              <Reveal key={category.slug} delay={i * 70}>
+                <div className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card">
+                  <h3 className="border-l-4 border-primary pl-3 text-base font-bold text-primary">
+                    {category.name}
+                  </h3>
+                  <ul className="mt-4 flex-1 space-y-0">
+                    {categoryDepartments.map((department) => (
+                      <li key={department.slug} className="border-b border-dashed border-border last:border-0">
+                        <Link
+                          to="/services/$slug"
+                          params={{ slug: department.slug }}
+                          className="flex items-center gap-2 py-2 text-sm text-foreground transition-colors hover:text-primary"
+                        >
+                          <span className="text-primary">•</span>
+                          {department.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                    View departments <ArrowRight className="size-4" aria-hidden />
+                  </span>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
