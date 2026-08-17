@@ -1,14 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Activity,
   ArrowRight,
   Car,
-  ClipboardPlus,
   Clock,
-  HeartPulse,
   LayoutGrid,
   Phone,
-  Scissors,
   Star,
   Stethoscope,
   Users,
@@ -16,14 +12,9 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
+import { DeptIcon } from "@/components/site/icons";
 import { DoctorCard } from "@/components/site/DoctorCard";
-import {
-  clinic,
-  departmentCategories,
-  departmentsInCategory,
-  doctors,
-  reviews,
-} from "@/data/clinic";
+import { clinic, departments, doctors, reviews } from "@/data/clinic";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -143,49 +134,34 @@ function HomePage() {
       </section>
 
       {/* Departments */}
-      <section className="bg-[#fcf8f7] px-4 py-16 md:py-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center">
-            <p className="section-eyebrow mx-auto rounded-full bg-primary px-5 py-2 text-[0.7rem] text-primary-foreground">
-              Departments
-            </p>
-            <h2 className="mt-5 text-3xl font-bold text-foreground sm:text-4xl">Medical Specialties</h2>
-            <p className="mt-3 text-muted-foreground">
-              With over 27+ specialist consultants and modern diagnostic facilities
-            </p>
-          </div>
+      <section className="mx-auto max-w-7xl px-4 py-16 md:py-20">
+        <div className="max-w-2xl">
+          <p className="section-eyebrow">Departments</p>
+          <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Medical Specialties</h2>
+          <p className="mt-3 text-muted-foreground">
+            21 departments supported by modern diagnostics and 27+ specialist consultants.
+          </p>
+        </div>
 
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {departmentCategories.map((category, i) => {
-              const categoryIcons = [Scissors, Activity, HeartPulse, ClipboardPlus];
-              const CategoryIcon = categoryIcons[i] ?? Activity;
-              const categoryDepartments = departmentsInCategory(category);
-              return (
-                <Reveal key={category.slug} delay={i * 70}>
-                  <div className="card-hover h-full rounded-3xl border border-primary/15 bg-card p-6 shadow-card">
-                    <CategoryIcon className="size-9 text-primary" aria-hidden />
-                    <h3 className="mt-5 border-l-4 border-primary pl-3 text-lg font-bold text-primary">
-                      {category.name}
-                    </h3>
-                    <ul className="mt-4 space-y-0">
-                      {categoryDepartments.map((department) => (
-                        <li key={department.slug} className="border-b border-dashed border-border last:border-0">
-                          <Link
-                            to="/services/$slug"
-                            params={{ slug: department.slug }}
-                            className="flex items-center gap-3 py-2 text-sm text-foreground transition-colors hover:text-primary"
-                          >
-                            <span className="text-primary">•</span>
-                            {department.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
+        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {departments.map((d, i) => (
+            <Reveal key={d.slug} delay={(i % 4) * 60}>
+              <Link
+                to="/services/$slug"
+                params={{ slug: d.slug }}
+                className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card"
+              >
+                <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
+                  <DeptIcon name={d.icon} className="size-5" />
+                </span>
+                <h3 className="mt-4 text-base font-bold text-foreground">{d.name}</h3>
+                <p className="mt-2 flex-1 text-sm text-muted-foreground">{d.short}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                  Learn more <ArrowRight className="size-4" aria-hidden />
+                </span>
+              </Link>
+            </Reveal>
+          ))}
         </div>
       </section>
 
