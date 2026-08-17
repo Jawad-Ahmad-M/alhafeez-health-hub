@@ -85,7 +85,7 @@ function ServiceDetail() {
           <h2 className="text-lg font-bold text-foreground">Book a Consultation</h2>
           <p className="mt-2 text-sm text-muted-foreground">{clinic.hours}</p>
           <Button asChild className="mt-5 w-full" size="lg">
-            <Link to="/book" search={{ department: department.slug }}>
+            <Link to="/book">
               Book a Consultation
             </Link>
           </Button>
