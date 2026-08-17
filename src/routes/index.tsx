@@ -14,7 +14,6 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { DeptIcon } from "@/components/site/icons";
 import { DoctorCard } from "@/components/site/DoctorCard";
-import { useBooking } from "@/components/site/booking";
 import { clinic, departments, doctors, reviews } from "@/data/clinic";
 
 export const Route = createFileRoute("/")({
@@ -45,7 +44,6 @@ const STATS = [
 ];
 
 function HomePage() {
-  const booking = useBooking();
   const featured = doctors.filter((d) => d.featured).slice(0, 4);
 
   return (
@@ -66,12 +64,8 @@ function HomePage() {
             <p className="mt-3 text-sm opacity-75">{clinic.nameUrdu}</p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button
-                size="lg"
-                onClick={() => booking.open()}
-                className="bg-primary-foreground text-primary hover:bg-primary-foreground/90"
-              >
-                Book an Appointment
+              <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+                <Link to="/book">Book an Appointment</Link>
               </Button>
               <Button
                 asChild
@@ -233,12 +227,8 @@ function HomePage() {
             Book online in under a minute, or call us directly — we are open every day from 8:00 AM to 11:00 PM.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Button
-              size="lg"
-              onClick={() => booking.open()}
-              className="bg-primary-foreground text-primary hover:bg-primary-foreground/90"
-            >
-              Book an Appointment
+            <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+              <Link to="/book">Book an Appointment</Link>
             </Button>
             <Button
               asChild

@@ -13,7 +13,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { BookingProvider } from "@/components/site/booking";
 import { DemoBadge, FloatingWhatsApp, StickyMobileCTA } from "@/components/site/FloatingActions";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -137,7 +136,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BookingProvider>
         <DemoBadge />
         <Header />
         <main className="min-h-screen pb-16 md:pb-0">
@@ -148,7 +146,6 @@ function RootComponent() {
         <FloatingWhatsApp />
         <StickyMobileCTA />
         <Toaster position="top-center" richColors />
-      </BookingProvider>
     </QueryClientProvider>
   );
 }
