@@ -32,7 +32,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+      <div className="border-b border-white/40 bg-background/60 shadow-[0_10px_40px_-28px_oklch(0.44_0.19_26/0.5)] backdrop-blur-2xl backdrop-saturate-150">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
           <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
             <span className="brand-gradient flex size-11 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-primary-foreground shadow-card">
