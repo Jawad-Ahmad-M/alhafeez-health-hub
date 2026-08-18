@@ -122,11 +122,11 @@ function HomePage() {
       </section>
 
       {/* Trust bar */}
-      <section className="border-b border-border bg-accent/60">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 lg:grid-cols-4">
+      <section className="liquid-bg relative -mt-10 px-4">
+        <div className="glass-panel mx-auto grid max-w-7xl grid-cols-2 gap-6 rounded-3xl px-5 py-8 lg:grid-cols-4">
           {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 70} className="flex items-center gap-3">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-card text-primary shadow-card">
+            <Reveal key={s.label} delay={i * 70} className="group flex items-center gap-3">
+              <span className="glass flex size-11 shrink-0 items-center justify-center rounded-xl text-primary transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-6">
                 <s.icon className="size-5" aria-hidden />
               </span>
               <span>
