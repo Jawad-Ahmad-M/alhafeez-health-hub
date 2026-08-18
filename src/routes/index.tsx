@@ -95,7 +95,7 @@ function HomePage() {
             <p className="mt-6 text-sm opacity-80">{clinic.address}</p>
           </div>
 
-          <Reveal className="rounded-3xl border border-primary-foreground/20 bg-primary-foreground/10 p-6 backdrop-blur">
+          <Reveal className="glass-dark glass-lift rounded-[1.75rem] p-6">
             <h2 className="text-sm font-semibold uppercase tracking-widest opacity-80">Today at a glance</h2>
             <ul className="mt-4 space-y-4 text-sm">
               <li className="flex items-start gap-3">
