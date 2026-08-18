@@ -153,7 +153,7 @@ function HomePage() {
             const categoryDepartments = departmentsInCategory(category);
             return (
               <Reveal key={category.slug} delay={i * 70}>
-                <div className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card">
+                <div className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
                   <h3 className="border-l-4 border-primary pl-3 text-base font-bold text-primary">
                     {category.name}
                   </h3>
