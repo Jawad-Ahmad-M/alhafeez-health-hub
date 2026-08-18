@@ -237,7 +237,7 @@ function HomePage() {
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 pb-6">
-        <div className="brand-gradient rounded-3xl px-6 py-12 text-center text-primary-foreground shadow-lift md:px-12">
+        <div className="brand-gradient glass-sheen relative overflow-hidden rounded-[2rem] border border-white/20 px-6 py-12 text-center text-primary-foreground shadow-lift md:px-12">
           <h2 className="text-2xl font-bold sm:text-3xl">Ready to see a specialist?</h2>
           <p className="mx-auto mt-3 max-w-xl opacity-90">
             Book online in under a minute, or call us directly — we are open every day from 8:00 AM to 11:00 PM.
