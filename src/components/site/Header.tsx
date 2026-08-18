@@ -46,14 +46,19 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+          <nav
+            className="hidden items-center gap-1 rounded-full border border-white/50 bg-white/35 p-1 backdrop-blur-xl lg:flex"
+            aria-label="Main"
+          >
             {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                activeProps={{ className: "bg-accent text-accent-foreground" }}
-                className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                activeProps={{
+                  className: "bg-accent/80 text-accent-foreground shadow-[0_1px_0_0_oklch(1_0_0/0.8)_inset]",
+                }}
+                className="relative rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent/70 hover:text-accent-foreground"
               >
                 {item.label}
               </Link>
