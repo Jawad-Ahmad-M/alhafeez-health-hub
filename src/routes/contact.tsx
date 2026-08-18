@@ -70,7 +70,7 @@ function ContactPage() {
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          className="rounded-2xl border border-border bg-card p-6 shadow-card md:p-8"
+          className="glass rounded-3xl p-6 md:p-8"
         >
           <h2 className="text-xl font-bold text-foreground">Send us a message</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -101,7 +101,7 @@ function ContactPage() {
         </form>
 
         <aside className="space-y-5">
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+          <div className="glass rounded-3xl p-6">
             <h2 className="text-lg font-bold text-foreground">Visit us</h2>
             <ul className="mt-4 space-y-4 text-sm">
               <li className="flex gap-3">
@@ -132,7 +132,7 @@ function ContactPage() {
             </ul>
           </div>
 
-          <div className="overflow-hidden rounded-2xl border border-border shadow-card">
+          <div className="glass overflow-hidden rounded-3xl">
             <iframe
               title="Al-Hafeez Specialist Medical Center location on Google Maps"
               src={clinic.mapsEmbed}

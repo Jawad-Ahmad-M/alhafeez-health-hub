@@ -60,7 +60,7 @@ function ServicesPage() {
                       <Link
                         to="/services/$slug"
                         params={{ slug: d.slug }}
-                        className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-6 shadow-card"
+                        className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-6"
                       >
                         <span className="flex size-12 items-center justify-center rounded-xl bg-accent text-primary">
                           <DeptIcon name={d.icon} className="size-6" />
