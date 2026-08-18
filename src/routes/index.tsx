@@ -139,7 +139,7 @@ function HomePage() {
       </section>
 
       {/* Departments */}
-      <section className="mx-auto max-w-7xl px-4 py-16 md:py-20">
+      <section className="liquid-bg mx-auto max-w-7xl px-4 py-16 md:py-20">
         <div className="max-w-2xl">
           <p className="section-eyebrow">Departments</p>
           <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Medical Specialties</h2>
