@@ -136,6 +136,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <div className="liquid-bg relative min-h-screen">
         <DemoBadge />
         <Header />
         <main className="min-h-screen pb-16 md:pb-0">
@@ -146,6 +147,7 @@ function RootComponent() {
         <FloatingWhatsApp />
         <StickyMobileCTA />
         <Toaster position="top-center" richColors />
+      </div>
     </QueryClientProvider>
   );
 }

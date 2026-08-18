@@ -119,7 +119,7 @@ function BookDoctorPage() {
 
   return (
     <>
-      <section className="brand-gradient text-primary-foreground">
+      <section className="hero-liquid text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 py-12 md:py-14">
           <Link
             to="/doctors/$slug"
@@ -137,7 +137,7 @@ function BookDoctorPage() {
 
       <section className="mx-auto grid max-w-5xl gap-6 px-4 py-12 lg:grid-cols-[1.5fr_1fr]">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
-          <div className="glass rounded-3xl p-6">
+          <div className="glass glass-sheen rounded-3xl p-6">
             <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
               <CalendarCheck className="size-5 text-primary" aria-hidden /> 1. Choose a date
             </h2>
@@ -177,7 +177,7 @@ function BookDoctorPage() {
             )}
           </div>
 
-          <div className="glass rounded-3xl p-6">
+          <div className="glass glass-sheen rounded-3xl p-6">
             <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
               <Clock className="size-5 text-primary" aria-hidden /> 2. Choose a time
             </h2>
@@ -212,7 +212,7 @@ function BookDoctorPage() {
             </div>
           </div>
 
-          <div className="glass rounded-3xl p-6">
+          <div className="glass glass-sheen rounded-3xl p-6">
             <h2 className="text-lg font-bold text-foreground">3. Your details</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <div>
@@ -259,7 +259,7 @@ function BookDoctorPage() {
         </form>
 
         <aside className="h-fit space-y-4 lg:sticky lg:top-32">
-          <div className="glass rounded-3xl p-6">
+          <div className="glass glass-sheen rounded-3xl p-6">
             <h2 className="text-base font-bold text-foreground">Appointment summary</h2>
             <dl className="mt-4 space-y-3 text-sm">
               <div>
@@ -284,7 +284,7 @@ function BookDoctorPage() {
             </dl>
           </div>
 
-          <div className="glass rounded-3xl p-6">
+          <div className="glass glass-sheen rounded-3xl p-6">
             <h2 className="text-base font-bold text-foreground">Clinic schedule</h2>
             <ul className="mt-3 space-y-3 text-sm">
               {blocks.map((b) => (

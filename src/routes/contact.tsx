@@ -57,7 +57,7 @@ function ContactPage() {
 
   return (
     <>
-      <section className="brand-gradient text-primary-foreground">
+      <section className="hero-liquid text-primary-foreground">
         <div className="mx-auto max-w-6xl px-4 py-14 md:py-16">
           <h1 className="text-3xl font-bold sm:text-4xl">Contact &amp; Location</h1>
           <p className="mt-3 max-w-2xl opacity-90">
@@ -70,7 +70,7 @@ function ContactPage() {
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          className="glass rounded-3xl p-6 md:p-8"
+          className="glass glass-sheen rounded-3xl p-6 md:p-8"
         >
           <h2 className="text-xl font-bold text-foreground">Send us a message</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -101,7 +101,7 @@ function ContactPage() {
         </form>
 
         <aside className="space-y-5">
-          <div className="glass rounded-3xl p-6">
+          <div className="glass glass-sheen rounded-3xl p-6">
             <h2 className="text-lg font-bold text-foreground">Visit us</h2>
             <ul className="mt-4 space-y-4 text-sm">
               <li className="flex gap-3">
@@ -132,7 +132,7 @@ function ContactPage() {
             </ul>
           </div>
 
-          <div className="glass overflow-hidden rounded-3xl">
+          <div className="glass glass-sheen overflow-hidden rounded-3xl">
             <iframe
               title="Al-Hafeez Specialist Medical Center location on Google Maps"
               src={clinic.mapsEmbed}

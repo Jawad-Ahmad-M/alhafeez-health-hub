@@ -209,6 +209,44 @@
     linear-gradient(135deg, var(--brand-dark), var(--brand));
 }
 
+/* Liquid-glass hero: brand gradient + two floating glass orbs + sheen sweep.
+   Drop-in replacement for `brand-gradient` on any page hero. */
+@utility hero-liquid {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--brand-dark);
+  background-image:
+    radial-gradient(55% 75% at 80% 12%, oklch(0.55 0.2 30 / 0.7) 0%, transparent 62%),
+    radial-gradient(45% 65% at 12% 88%, oklch(0.33 0.13 27 / 0.85) 0%, transparent 66%),
+    linear-gradient(135deg, var(--brand-dark), var(--brand));
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: 9999px;
+    background: oklch(1 0 0 / 0.1);
+    filter: blur(56px);
+    pointer-events: none;
+    animation: float-y 8s ease-in-out infinite;
+  }
+  &::before {
+    inset: -3rem auto auto -3rem;
+    width: 16rem;
+    height: 16rem;
+  }
+  &::after {
+    inset: auto -2rem -4rem auto;
+    width: 18rem;
+    height: 18rem;
+    animation-delay: -3s;
+    animation-duration: 10s;
+  }
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 @utility section-eyebrow {
   display: inline-flex;
   align-items: center;

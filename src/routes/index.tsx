@@ -54,7 +54,7 @@ function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="hero-mesh relative overflow-hidden text-primary-foreground">
+      <section className="hero-liquid relative text-primary-foreground">
         <span
           aria-hidden
           className="float-slow pointer-events-none absolute -left-24 top-10 size-72 rounded-full bg-white/10 blur-3xl"

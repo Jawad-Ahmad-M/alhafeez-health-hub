@@ -40,7 +40,7 @@ function ResourcesPage() {
 
   return (
     <>
-      <section className="brand-gradient text-primary-foreground">
+      <section className="hero-liquid text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 py-14 md:py-16">
           <h1 className="text-3xl font-bold sm:text-4xl">Patient Resources</h1>
           <p className="mt-3 max-w-2xl opacity-90">
@@ -52,7 +52,7 @@ function ResourcesPage() {
       <section className="mx-auto max-w-5xl px-4 py-12">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {FACILITIES.map((f) => (
-            <div key={f.title} className="glass rounded-3xl p-5">
+            <div key={f.title} className="glass glass-lift glass-sheen rounded-3xl p-5">
               <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
                 <f.icon className="size-5" aria-hidden />
               </span>
@@ -62,7 +62,7 @@ function ResourcesPage() {
           ))}
         </div>
 
-        <div className="mt-12 glass rounded-3xl p-6 md:p-8">
+        <div className="mt-12 glass glass-sheen rounded-3xl p-6 md:p-8">
           <h2 className="text-2xl font-bold text-foreground">Frequently asked questions</h2>
           <Accordion type="single" collapsible className="mt-4">
             {faqs.map((f, i) => (

@@ -29,7 +29,7 @@ export const Route = createFileRoute("/services/")({
 function ServicesPage() {
   return (
     <>
-      <section className="brand-gradient text-primary-foreground">
+      <section className="hero-liquid text-primary-foreground">
         <div className="mx-auto max-w-7xl px-4 py-14 md:py-16">
           <h1 className="text-3xl font-bold sm:text-4xl">Our Medical Departments</h1>
           <p className="mt-3 max-w-2xl opacity-90">

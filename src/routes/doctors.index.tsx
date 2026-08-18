@@ -43,7 +43,7 @@ function DoctorsPage() {
 
   return (
     <>
-      <section className="brand-gradient text-primary-foreground">
+      <section className="hero-liquid text-primary-foreground">
         <div className="mx-auto max-w-7xl px-4 py-14 md:py-16">
           <h1 className="text-3xl font-bold sm:text-4xl">Our Specialist Team</h1>
           <p className="mt-3 max-w-2xl opacity-90">Find the right specialist for your health needs.</p>
@@ -91,7 +91,7 @@ function DoctorsPage() {
         </p>
 
         {filtered.length === 0 ? (
-          <p className="mt-10 rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground">
+          <p className="mt-10 glass rounded-3xl border border-dashed border-border p-10 text-center text-muted-foreground">
             No doctors match your search. Try a different name or specialty.
           </p>
         ) : (

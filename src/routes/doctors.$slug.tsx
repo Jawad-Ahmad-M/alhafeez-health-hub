@@ -76,7 +76,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass rounded-3xl p-6">
+    <div className="glass glass-lift glass-sheen rounded-3xl p-6">
       <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
         <Icon className="size-5 text-primary" aria-hidden />
         {title}
@@ -97,7 +97,7 @@ function DoctorProfile() {
 
   return (
     <>
-      <section className="brand-gradient text-primary-foreground">
+      <section className="hero-liquid text-primary-foreground">
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
           <Link to="/doctors" className="inline-flex items-center gap-2 text-sm opacity-85 hover:underline">
             <ArrowLeft className="size-4" aria-hidden /> All doctors
@@ -235,7 +235,7 @@ function DoctorProfile() {
         </div>
 
         <aside className="h-fit space-y-4 lg:sticky lg:top-32">
-          <div className="glass rounded-3xl p-6">
+          <div className="glass glass-sheen rounded-3xl p-6">
             <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
               <CalendarDays className="size-5 text-primary" aria-hidden />
               Clinic Schedule &amp; Fee

@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, CheckCircle2, Phone } from "lucide-react";
+import { ArrowLeft, CircleCheck as CheckCircle2, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { DeptIcon } from "@/components/site/icons";
@@ -49,7 +49,7 @@ function ServiceDetail() {
 
   return (
     <>
-      <section className="brand-gradient text-primary-foreground">
+      <section className="hero-liquid text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 py-12 md:py-16">
           <Link to="/services" className="inline-flex items-center gap-2 text-sm opacity-85 hover:underline">
             <ArrowLeft className="size-4" aria-hidden /> All departments
@@ -67,7 +67,7 @@ function ServiceDetail() {
       </section>
 
       <section className="mx-auto grid max-w-5xl gap-6 px-4 py-12 lg:grid-cols-[1.5fr_1fr]">
-        <div className="glass rounded-3xl p-6">
+        <div className="glass glass-lift glass-sheen rounded-3xl p-6">
           <h2 className="text-lg font-bold text-foreground">About this department</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{department.long}</p>
           <ul className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
@@ -81,7 +81,7 @@ function ServiceDetail() {
           </ul>
         </div>
 
-        <aside className="h-fit glass rounded-3xl p-6">
+        <aside className="h-fit glass glass-sheen rounded-3xl p-6">
           <h2 className="text-lg font-bold text-foreground">Book a Consultation</h2>
           <p className="mt-2 text-sm text-muted-foreground">{clinic.hours}</p>
           <Button asChild className="mt-5 w-full" size="lg">
@@ -100,7 +100,7 @@ function ServiceDetail() {
       <section className="mx-auto max-w-5xl px-4 pb-12">
         <h2 className="text-2xl font-bold text-foreground">Specialists in {department.name}</h2>
         {docs.length === 0 ? (
-          <p className="mt-4 rounded-2xl border border-dashed border-border p-8 text-center text-muted-foreground">
+          <p className="mt-4 glass rounded-3xl border border-dashed border-border p-8 text-center text-muted-foreground">
             Consultants for this department are available on request — please call {clinic.phone}.
           </p>
         ) : (
