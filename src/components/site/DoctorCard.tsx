@@ -17,9 +17,9 @@ export function DoctorCard({ doctor }: { doctor: Doctor }) {
   const available = isAvailableToday(doctor.schedule);
 
   return (
-    <article className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card">
+    <article className="glass glass-lift glass-sheen group flex h-full flex-col rounded-3xl p-5">
       <div className="flex items-start gap-4">
-        <span className="brand-gradient flex size-14 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-primary-foreground">
+        <span className="brand-gradient flex size-14 shrink-0 items-center justify-center rounded-2xl text-lg font-bold text-primary-foreground shadow-card transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3">
           {initials(doctor.name)}
         </span>
         <div className="min-w-0">
