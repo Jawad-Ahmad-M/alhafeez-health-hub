@@ -182,7 +182,7 @@ function HomePage() {
       </section>
 
       {/* Featured doctors */}
-      <section className="bg-accent/50 py-16 md:py-20">
+      <section className="liquid-bg bg-accent/40 py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
