@@ -239,3 +239,138 @@
   opacity: 1;
   transform: none;
 }
+
+/* ------------------------------------------------------------------
+ * Liquid glass layer — translucent surfaces, sheen, ambient motion.
+ * Same brand palette, only presentation.
+ * ------------------------------------------------------------------ */
+
+@utility glass {
+  position: relative;
+  background: color-mix(in oklab, var(--card) 62%, transparent);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid color-mix(in oklab, var(--brand) 14%, oklch(1 0 0 / 0.55));
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.6) inset,
+    0 -1px 0 0 color-mix(in oklab, var(--brand) 8%, transparent) inset,
+    0 18px 44px -24px color-mix(in oklab, var(--brand) 45%, transparent);
+}
+
+@utility glass-panel {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(140deg, oklch(1 0 0 / 0.55) 0%, oklch(1 0 0 / 0.18) 46%, color-mix(in oklab, var(--brand-light) 55%, transparent) 100%);
+  backdrop-filter: blur(24px) saturate(170%);
+  border: 1px solid oklch(1 0 0 / 0.6);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.7) inset,
+    0 24px 60px -30px color-mix(in oklab, var(--brand) 50%, transparent);
+}
+
+@utility glass-dark {
+  background: oklch(1 0 0 / 0.1);
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid oklch(1 0 0 / 0.22);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.25) inset,
+    0 24px 60px -28px oklch(0 0 0 / 0.45);
+}
+
+@utility glass-sheen {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 35%, oklch(1 0 0 / 0.45) 50%, transparent 65%);
+    transform: translateX(-120%);
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+  &:hover::after {
+    transform: translateX(120%);
+  }
+}
+
+@utility glass-lift {
+  transition:
+    transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 400ms ease,
+    background-color 400ms ease;
+  &:hover {
+    transform: translateY(-6px) scale(1.012);
+    border-color: color-mix(in oklab, var(--brand) 40%, transparent);
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.7) inset,
+      0 30px 70px -28px color-mix(in oklab, var(--brand) 60%, transparent);
+  }
+}
+
+@utility liquid-bg {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    z-index: -1;
+    background:
+      radial-gradient(38% 44% at 18% 22%, color-mix(in oklab, var(--brand) 22%, transparent) 0%, transparent 70%),
+      radial-gradient(34% 40% at 82% 12%, color-mix(in oklab, var(--brand-light) 90%, transparent) 0%, transparent 70%),
+      radial-gradient(40% 46% at 70% 88%, color-mix(in oklab, var(--brand) 16%, transparent) 0%, transparent 72%);
+    filter: blur(10px);
+    animation: liquid-drift 22s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+}
+
+@utility glow-ring {
+  animation: glow-pulse 3.2s ease-in-out infinite;
+}
+
+@utility float-slow {
+  animation: float-y 7s ease-in-out infinite;
+}
+
+@utility shimmer-text {
+  background: linear-gradient(100deg, currentColor 25%, oklch(1 0 0 / 0.85) 50%, currentColor 75%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-pan 6s linear infinite;
+}
+
+@keyframes liquid-drift {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(2%, -2.5%, 0) scale(1.06); }
+  100% { transform: translate3d(-2%, 2%, 0) scale(1.03); }
+}
+
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--brand) 40%, transparent); }
+  50% { box-shadow: 0 0 0 10px color-mix(in oklab, var(--brand) 0%, transparent); }
+}
+
+@keyframes shimmer-pan {
+  0% { background-position: 150% 0; }
+  100% { background-position: -150% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
