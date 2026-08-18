@@ -65,7 +65,7 @@ function HomePage() {
         />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-16 md:pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-[0.18em]">
+            <span className="glass-dark glass-sheen inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.18em]">
               <Star className="size-3.5" aria-hidden /> Multi-specialty hospital · Daska
             </span>
             <h1 className="mt-5 text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">
