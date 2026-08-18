@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -131,6 +132,17 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+function PageTransition({ children }: { children: ReactNode }) {
+  const routerState = useRouterState();
+  const key = routerState.location.pathname;
+
+  return (
+    <div key={key} className="page-enter">
+      {children}
+    </div>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
@@ -141,7 +153,9 @@ function RootComponent() {
         <Header />
         <main className="min-h-screen pb-16 md:pb-0">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
+          <PageTransition>
+            <Outlet />
+          </PageTransition>
         </main>
         <Footer />
         <FloatingWhatsApp />

@@ -13,6 +13,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { DoctorCard } from "@/components/site/DoctorCard";
+import { GlassSpotlight } from "@/components/site/GlassSpotlight";
 import {
   clinic,
   departmentCategories,
@@ -49,7 +50,7 @@ const STATS = [
 ];
 
 function HomePage() {
-  const featured = doctors.filter((d) => d.featured).slice(0, 4);
+  const featured = doctors.filter((d) => d.featured).slice(0, 3);
 
   return (
     <>
@@ -161,7 +162,7 @@ function HomePage() {
             const categoryDepartments = departmentsInCategory(category);
             return (
               <Reveal key={category.slug} delay={i * 70}>
-                <div className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
+                <GlassSpotlight className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
                   <h3 className="border-l-4 border-primary pl-3 text-base font-bold text-primary">
                     {category.name}
                   </h3>
@@ -182,7 +183,7 @@ function HomePage() {
                   <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
                     View departments <ArrowRight className="size-4" aria-hidden />
                   </span>
-                </div>
+                </GlassSpotlight>
               </Reveal>
             );
           })}
@@ -203,9 +204,9 @@ function HomePage() {
             </Button>
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((doc, i) => (
-              <Reveal key={doc.slug} delay={i * 70}>
+              <Reveal key={doc.slug} delay={i * 80}>
                 <DoctorCard doctor={doc} />
               </Reveal>
             ))}
@@ -229,7 +230,7 @@ function HomePage() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {reviews.map((r, i) => (
             <Reveal key={r.name} delay={i * 70}>
-              <figure className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
+              <GlassSpotlight as="figure" className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
                 <div className="flex gap-0.5 text-primary">
                   {[0, 1, 2, 3, 4].map((n) => (
                     <Star key={n} className="size-4 fill-current" aria-hidden />
@@ -237,7 +238,7 @@ function HomePage() {
                 </div>
                 <blockquote className="mt-3 flex-1 text-sm text-muted-foreground">“{r.text}”</blockquote>
                 <figcaption className="mt-4 text-sm font-semibold text-foreground">— {r.name}</figcaption>
-              </figure>
+              </GlassSpotlight>
             </Reveal>
           ))}
         </div>

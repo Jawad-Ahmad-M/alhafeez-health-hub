@@ -1,8 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { CalendarDays, Wallet } from "lucide-react";
+import { useRef } from "react";
 
 import { Button } from "@/components/ui/button";
 import { isAvailableToday, type Doctor } from "@/data/clinic";
+import { useGlassSpotlight } from "@/hooks/use-glass-spotlight";
 
 function initials(name: string) {
   return name
@@ -15,9 +17,14 @@ function initials(name: string) {
 
 export function DoctorCard({ doctor }: { doctor: Doctor }) {
   const available = isAvailableToday(doctor.schedule);
+  const ref = useRef<HTMLElement>(null);
+  useGlassSpotlight(ref);
 
   return (
-    <article className="glass glass-lift glass-sheen group flex h-full flex-col rounded-3xl p-5">
+    <article
+      ref={ref as React.RefObject<HTMLElement>}
+      className="glass glass-lift glass-sheen glass-spotlight group flex h-full flex-col rounded-3xl p-5"
+    >
       <div className="flex items-start gap-4">
         <span className="brand-gradient flex size-14 shrink-0 items-center justify-center rounded-2xl text-lg font-bold text-primary-foreground shadow-card transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3">
           {initials(doctor.name)}
