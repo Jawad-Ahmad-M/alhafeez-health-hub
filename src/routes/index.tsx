@@ -221,7 +221,7 @@ function HomePage() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {reviews.map((r, i) => (
             <Reveal key={r.name} delay={i * 70}>
-              <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card">
+              <figure className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
                 <div className="flex gap-0.5 text-primary">
                   {[0, 1, 2, 3, 4].map((n) => (
                     <Star key={n} className="size-4 fill-current" aria-hidden />
