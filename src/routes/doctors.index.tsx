@@ -51,7 +51,7 @@ function DoctorsPage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-10">
-        <div className="grid gap-4 rounded-2xl border border-border bg-card p-5 shadow-card sm:grid-cols-[1fr_18rem]">
+        <div className="grid gap-4 glass rounded-3xl p-5 sm:grid-cols-[1fr_18rem]">
           <div>
             <Label htmlFor="doc-search">Search by name or specialty</Label>
             <div className="relative mt-1">

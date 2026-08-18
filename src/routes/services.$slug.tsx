@@ -67,7 +67,7 @@ function ServiceDetail() {
       </section>
 
       <section className="mx-auto grid max-w-5xl gap-6 px-4 py-12 lg:grid-cols-[1.5fr_1fr]">
-        <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+        <div className="glass rounded-3xl p-6">
           <h2 className="text-lg font-bold text-foreground">About this department</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{department.long}</p>
           <ul className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
@@ -81,7 +81,7 @@ function ServiceDetail() {
           </ul>
         </div>
 
-        <aside className="h-fit rounded-2xl border border-border bg-card p-6 shadow-card">
+        <aside className="h-fit glass rounded-3xl p-6">
           <h2 className="text-lg font-bold text-foreground">Book a Consultation</h2>
           <p className="mt-2 text-sm text-muted-foreground">{clinic.hours}</p>
           <Button asChild className="mt-5 w-full" size="lg">

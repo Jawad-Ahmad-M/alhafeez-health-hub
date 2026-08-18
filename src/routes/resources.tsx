@@ -52,7 +52,7 @@ function ResourcesPage() {
       <section className="mx-auto max-w-5xl px-4 py-12">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {FACILITIES.map((f) => (
-            <div key={f.title} className="rounded-2xl border border-border bg-card p-5 shadow-card">
+            <div key={f.title} className="glass rounded-3xl p-5">
               <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
                 <f.icon className="size-5" aria-hidden />
               </span>
@@ -62,7 +62,7 @@ function ResourcesPage() {
           ))}
         </div>
 
-        <div className="mt-12 rounded-2xl border border-border bg-card p-6 shadow-card md:p-8">
+        <div className="mt-12 glass rounded-3xl p-6 md:p-8">
           <h2 className="text-2xl font-bold text-foreground">Frequently asked questions</h2>
           <Accordion type="single" collapsible className="mt-4">
             {faqs.map((f, i) => (
@@ -74,7 +74,7 @@ function ResourcesPage() {
           </Accordion>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-accent/60 p-6">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 glass-panel rounded-3xl p-6">
           <p className="text-sm font-medium text-foreground">Still have a question? Our reception is happy to help.</p>
           <div className="flex gap-3">
             <Button asChild><Link to="/book">Book Appointment</Link></Button>

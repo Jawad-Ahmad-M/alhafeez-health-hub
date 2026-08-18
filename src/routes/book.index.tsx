@@ -87,7 +87,7 @@ function BookIndexPage() {
                 key={d.slug}
                 to="/book/$slug"
                 params={{ slug: d.slug }}
-                className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card"
+                className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5"
               >
                 <h2 className="text-base font-bold text-foreground">{d.name}</h2>
                 <p className="text-sm font-medium text-primary">{d.specialty}</p>

@@ -32,10 +32,10 @@ export function Header() {
         </div>
       </div>
 
-      <div className="border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+      <div className="border-b border-white/40 bg-background/60 shadow-[0_10px_40px_-28px_oklch(0.44_0.19_26/0.5)] backdrop-blur-2xl backdrop-saturate-150">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
-          <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-            <span className="brand-gradient flex size-11 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-primary-foreground shadow-card">
+          <Link to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
+            <span className="brand-gradient glass-sheen flex size-11 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-primary-foreground shadow-card transition-transform duration-500 group-hover:scale-105 group-hover:rotate-3">
               AH
             </span>
             <span className="leading-tight">
@@ -46,14 +46,19 @@ export function Header() {
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+          <nav
+            className="hidden items-center gap-1 rounded-full border border-white/50 bg-white/35 p-1 backdrop-blur-xl lg:flex"
+            aria-label="Main"
+          >
             {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
                 activeOptions={{ exact: item.to === "/" }}
-                activeProps={{ className: "bg-accent text-accent-foreground" }}
-                className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+                activeProps={{
+                  className: "bg-accent/80 text-accent-foreground shadow-[0_1px_0_0_oklch(1_0_0/0.8)_inset]",
+                }}
+                className="relative rounded-full px-3.5 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent/70 hover:text-accent-foreground"
               >
                 {item.label}
               </Link>

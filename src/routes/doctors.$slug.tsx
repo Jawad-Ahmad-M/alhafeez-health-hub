@@ -76,7 +76,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+    <div className="glass rounded-3xl p-6">
       <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
         <Icon className="size-5 text-primary" aria-hidden />
         {title}
@@ -235,7 +235,7 @@ function DoctorProfile() {
         </div>
 
         <aside className="h-fit space-y-4 lg:sticky lg:top-32">
-          <div className="rounded-2xl border border-border bg-card p-6 shadow-card">
+          <div className="glass rounded-3xl p-6">
             <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
               <CalendarDays className="size-5 text-primary" aria-hidden />
               Clinic Schedule &amp; Fee

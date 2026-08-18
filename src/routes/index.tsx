@@ -55,9 +55,17 @@ function HomePage() {
     <>
       {/* Hero */}
       <section className="hero-mesh relative overflow-hidden text-primary-foreground">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <span
+          aria-hidden
+          className="float-slow pointer-events-none absolute -left-24 top-10 size-72 rounded-full bg-white/10 blur-3xl"
+        />
+        <span
+          aria-hidden
+          className="float-slow pointer-events-none absolute -right-16 bottom-0 size-80 rounded-full bg-white/10 blur-3xl [animation-delay:-3s]"
+        />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-16 md:pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary-foreground/25 bg-primary-foreground/10 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-[0.18em]">
+            <span className="glass-dark glass-sheen inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.18em]">
               <Star className="size-3.5" aria-hidden /> Multi-specialty hospital · Daska
             </span>
             <h1 className="mt-5 text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">
@@ -87,7 +95,7 @@ function HomePage() {
             <p className="mt-6 text-sm opacity-80">{clinic.address}</p>
           </div>
 
-          <Reveal className="rounded-3xl border border-primary-foreground/20 bg-primary-foreground/10 p-6 backdrop-blur">
+          <Reveal className="glass-dark glass-lift rounded-[1.75rem] p-6">
             <h2 className="text-sm font-semibold uppercase tracking-widest opacity-80">Today at a glance</h2>
             <ul className="mt-4 space-y-4 text-sm">
               <li className="flex items-start gap-3">
@@ -122,11 +130,11 @@ function HomePage() {
       </section>
 
       {/* Trust bar */}
-      <section className="border-b border-border bg-accent/60">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-4 py-8 lg:grid-cols-4">
+      <section className="liquid-bg relative -mt-10 px-4">
+        <div className="glass-panel mx-auto grid max-w-7xl grid-cols-2 gap-6 rounded-3xl px-5 py-8 lg:grid-cols-4">
           {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 70} className="flex items-center gap-3">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-card text-primary shadow-card">
+            <Reveal key={s.label} delay={i * 70} className="group flex items-center gap-3">
+              <span className="glass flex size-11 shrink-0 items-center justify-center rounded-xl text-primary transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-6">
                 <s.icon className="size-5" aria-hidden />
               </span>
               <span>
@@ -139,7 +147,7 @@ function HomePage() {
       </section>
 
       {/* Departments */}
-      <section className="mx-auto max-w-7xl px-4 py-16 md:py-20">
+      <section className="liquid-bg mx-auto max-w-7xl px-4 py-16 md:py-20">
         <div className="max-w-2xl">
           <p className="section-eyebrow">Departments</p>
           <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Medical Specialties</h2>
@@ -153,7 +161,7 @@ function HomePage() {
             const categoryDepartments = departmentsInCategory(category);
             return (
               <Reveal key={category.slug} delay={i * 70}>
-                <div className="card-hover flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card">
+                <div className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
                   <h3 className="border-l-4 border-primary pl-3 text-base font-bold text-primary">
                     {category.name}
                   </h3>
@@ -182,7 +190,7 @@ function HomePage() {
       </section>
 
       {/* Featured doctors */}
-      <section className="bg-accent/50 py-16 md:py-20">
+      <section className="liquid-bg bg-accent/40 py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
@@ -221,7 +229,7 @@ function HomePage() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {reviews.map((r, i) => (
             <Reveal key={r.name} delay={i * 70}>
-              <figure className="flex h-full flex-col rounded-2xl border border-border bg-card p-5 shadow-card">
+              <figure className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
                 <div className="flex gap-0.5 text-primary">
                   {[0, 1, 2, 3, 4].map((n) => (
                     <Star key={n} className="size-4 fill-current" aria-hidden />
@@ -237,7 +245,7 @@ function HomePage() {
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4 pb-6">
-        <div className="brand-gradient rounded-3xl px-6 py-12 text-center text-primary-foreground shadow-lift md:px-12">
+        <div className="brand-gradient glass-sheen relative overflow-hidden rounded-[2rem] border border-white/20 px-6 py-12 text-center text-primary-foreground shadow-lift md:px-12">
           <h2 className="text-2xl font-bold sm:text-3xl">Ready to see a specialist?</h2>
           <p className="mx-auto mt-3 max-w-xl opacity-90">
             Book online in under a minute, or call us directly — we are open every day from 8:00 AM to 11:00 PM.
