@@ -283,32 +283,76 @@
  * Same brand palette, only presentation.
  * ------------------------------------------------------------------ */
 
+/* Apple-style liquid glass: highly translucent, deeply blurred, with a
+   specular top highlight, a refracted bottom edge and a soft ambient
+   shadow. Text stays fully legible thanks to the light frost layer. */
 @utility glass {
   position: relative;
-  background: color-mix(in oklab, var(--card) 62%, transparent);
-  backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid color-mix(in oklab, var(--brand) 14%, oklch(1 0 0 / 0.55));
+  isolation: isolate;
+  background:
+    linear-gradient(
+      160deg,
+      oklch(1 0 0 / 0.58) 0%,
+      oklch(1 0 0 / 0.34) 42%,
+      color-mix(in oklab, var(--brand-light) 45%, oklch(1 0 0 / 0.3)) 100%
+    );
+  backdrop-filter: blur(28px) saturate(190%) brightness(1.06);
+  border: 1px solid oklch(1 0 0 / 0.5);
+  box-shadow:
+    0 1px 0 0 oklch(1 0 0 / 0.75) inset,
+    0 -1px 0 0 color-mix(in oklab, var(--brand) 12%, transparent) inset,
+    0 0 0 0.5px color-mix(in oklab, var(--brand) 10%, transparent),
+    0 22px 55px -28px color-mix(in oklab, var(--brand) 45%, transparent),
+    0 2px 8px -4px oklch(0 0 0 / 0.06);
+  /* specular arc across the top edge — the tell of Apple's glass */
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(120% 70% at 20% -25%, oklch(1 0 0 / 0.65) 0%, transparent 60%),
+      radial-gradient(90% 60% at 105% 110%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 65%);
+    opacity: 0.9;
+    transition: opacity 500ms ease;
+  }
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+/* Small inner tile — a lighter glass for nested blocks inside a card. */
+@utility glass-soft {
+  position: relative;
+  background: linear-gradient(150deg, oklch(1 0 0 / 0.5), color-mix(in oklab, var(--brand-light) 55%, oklch(1 0 0 / 0.25)));
+  backdrop-filter: blur(14px) saturate(160%);
+  border: 1px solid oklch(1 0 0 / 0.45);
   box-shadow:
     0 1px 0 0 oklch(1 0 0 / 0.6) inset,
-    0 -1px 0 0 color-mix(in oklab, var(--brand) 8%, transparent) inset,
-    0 18px 44px -24px color-mix(in oklab, var(--brand) 45%, transparent);
+    0 10px 24px -18px color-mix(in oklab, var(--brand) 40%, transparent);
 }
 
 @utility glass-panel {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(140deg, oklch(1 0 0 / 0.85) 0%, oklch(1 0 0 / 0.62) 55%, color-mix(in oklab, var(--brand-light) 70%, oklch(1 0 0 / 0.6)) 100%);
-  backdrop-filter: blur(24px) saturate(170%);
-  border: 1px solid oklch(1 0 0 / 0.6);
+    linear-gradient(140deg, oklch(1 0 0 / 0.72) 0%, oklch(1 0 0 / 0.45) 55%, color-mix(in oklab, var(--brand-light) 60%, oklch(1 0 0 / 0.4)) 100%);
+  backdrop-filter: blur(30px) saturate(180%) brightness(1.05);
+  border: 1px solid oklch(1 0 0 / 0.55);
   box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.7) inset,
-    0 24px 60px -30px color-mix(in oklab, var(--brand) 50%, transparent);
+    0 1px 0 0 oklch(1 0 0 / 0.75) inset,
+    0 26px 64px -32px color-mix(in oklab, var(--brand) 50%, transparent);
 }
 
 @utility glass-dark {
   background: oklch(1 0 0 / 0.1);
-  backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(24px) saturate(160%);
   border: 1px solid oklch(1 0 0 / 0.22);
   box-shadow:
     0 1px 0 0 oklch(1 0 0 / 0.25) inset,
@@ -318,32 +362,37 @@
 @utility glass-sheen {
   position: relative;
   overflow: hidden;
-  &::after {
+  & > .glass-sheen-layer,
+  &::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(105deg, transparent 35%, oklch(1 0 0 / 0.45) 50%, transparent 65%);
+    border-radius: inherit;
+    background: linear-gradient(105deg, transparent 34%, oklch(1 0 0 / 0.5) 50%, transparent 66%);
     transform: translateX(-120%);
-    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
+    z-index: 2;
   }
-  &:hover::after {
+  &:hover::before {
     transform: translateX(120%);
   }
 }
 
 @utility glass-lift {
   transition:
-    transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 400ms ease,
-    background-color 400ms ease;
+    backdrop-filter 400ms ease;
   &:hover {
-    transform: translateY(-6px) scale(1.012);
-    border-color: color-mix(in oklab, var(--brand) 40%, transparent);
+    transform: translateY(-8px) scale(1.015);
+    border-color: oklch(1 0 0 / 0.7);
+    backdrop-filter: blur(34px) saturate(210%) brightness(1.09);
     box-shadow:
-      0 1px 0 0 oklch(1 0 0 / 0.7) inset,
-      0 30px 70px -28px color-mix(in oklab, var(--brand) 60%, transparent);
+      0 1px 0 0 oklch(1 0 0 / 0.85) inset,
+      0 -1px 0 0 color-mix(in oklab, var(--brand) 18%, transparent) inset,
+      0 36px 80px -30px color-mix(in oklab, var(--brand) 58%, transparent);
   }
 }
 
