@@ -160,10 +160,11 @@ function HomePage() {
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {departmentCategories.map((category, i) => {
             const categoryDepartments = departmentsInCategory(category);
+            const firstSlug = categoryDepartments[0]?.slug;
             return (
               <Reveal key={category.slug} delay={i * 70}>
-                <GlassSpotlight className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
-                  <h3 className="border-l-4 border-primary pl-3 text-base font-bold text-primary">
+                <GlassSpotlight className="glass glass-lift glass-sheen dept-card group flex h-full flex-col rounded-3xl p-5">
+                  <h3 className="dept-icon flex items-center gap-2 border-l-4 border-primary pl-3 text-base font-bold text-primary">
                     {category.name}
                   </h3>
                   <ul className="mt-4 flex-1 space-y-0">
@@ -172,7 +173,7 @@ function HomePage() {
                         <Link
                           to="/services/$slug"
                           params={{ slug: department.slug }}
-                          className="flex items-center gap-2 py-2 text-sm text-foreground transition-colors hover:text-primary"
+                          className="dept-link flex items-center gap-2 py-2 text-sm text-foreground transition-colors hover:text-primary"
                         >
                           <span className="text-primary">•</span>
                           {department.name}
@@ -180,9 +181,19 @@ function HomePage() {
                       </li>
                     ))}
                   </ul>
-                  <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
-                    View departments <ArrowRight className="size-4" aria-hidden />
-                  </span>
+                  {firstSlug ? (
+                    <Link
+                      to="/services/$slug"
+                      params={{ slug: firstSlug }}
+                      className="dept-cta mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary"
+                    >
+                      View departments <ArrowRight className="size-4" aria-hidden />
+                    </Link>
+                  ) : (
+                    <span className="dept-cta mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary">
+                      View departments <ArrowRight className="size-4" aria-hidden />
+                    </span>
+                  )}
                 </GlassSpotlight>
               </Reveal>
             );
@@ -245,7 +256,7 @@ function HomePage() {
       </section>
 
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-4 pb-6">
+      <section className="mx-auto max-w-7xl px-4">
         <div className="brand-gradient glass-sheen relative overflow-hidden rounded-[2rem] border border-white/20 px-6 py-12 text-center text-primary-foreground shadow-lift md:px-12">
           <h2 className="text-2xl font-bold sm:text-3xl">Ready to see a specialist?</h2>
           <p className="mx-auto mt-3 max-w-xl opacity-90">

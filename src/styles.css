@@ -165,7 +165,7 @@
   --whatsapp: oklch(0.63 0.16 148);
   --success: oklch(0.6 0.14 150);
 
-  --background: oklch(1 0 0);
+  --background: oklch(0.965 0.012 20);
   --foreground: oklch(0.19 0.005 285);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.19 0.005 285);
@@ -344,6 +344,43 @@
     box-shadow:
       0 1px 0 0 oklch(1 0 0 / 0.7) inset,
       0 30px 70px -28px color-mix(in oklab, var(--brand) 60%, transparent);
+  }
+}
+
+/* Department category card — richer hover: gradient halo, icon glow,
+   list items slide in, and the "View departments" link animates. */
+@utility dept-card {
+  & .dept-icon {
+    transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), color 300ms ease;
+  }
+  & .dept-link {
+    transition: color 250ms ease, transform 250ms ease, padding-left 250ms ease;
+  }
+  & .dept-cta {
+    transition: gap 300ms ease, color 250ms ease;
+  }
+  &:hover {
+    background: color-mix(in oklab, var(--brand-light) 55%, oklch(1 0 0 / 0.7));
+    & .dept-icon {
+      transform: scale(1.12) rotate(-4deg);
+      color: var(--brand);
+    }
+    & .dept-link {
+      transform: translateX(4px);
+    }
+    & .dept-link:hover {
+      padding-left: 0.5rem;
+      color: var(--brand);
+    }
+    & .dept-cta {
+      gap: 0.7rem;
+    }
+    & .dept-cta svg {
+      transform: translateX(4px);
+    }
+  }
+  & .dept-cta svg {
+    transition: transform 300ms ease;
   }
 }
 
