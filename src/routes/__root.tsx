@@ -148,10 +148,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="liquid-bg relative min-h-screen">
+      <div className="liquid-bg relative flex min-h-screen flex-col">
         <DemoBadge />
         <Header />
-        <main className="min-h-screen pb-16 md:pb-0">
+        <main className="flex-1 pb-16 md:pb-0">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <PageTransition>
             <Outlet />
