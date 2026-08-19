@@ -73,7 +73,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: oklch(0.965 0.012 20);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -362,7 +362,7 @@
   &:hover {
     background: color-mix(in oklab, var(--brand-light) 55%, oklch(1 0 0 / 0.7));
     & .dept-icon {
-      transform: scale(1.12) rotate(-4deg);
+      transform: scale(1.1);
       color: var(--brand);
     }
     & .dept-link {

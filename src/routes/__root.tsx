@@ -151,7 +151,7 @@ function RootComponent() {
       <div className="liquid-bg relative min-h-screen">
         <DemoBadge />
         <Header />
-        <main className="min-h-screen pb-0 md:pb-0">
+        <main className="min-h-screen pb-16 md:pb-0">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <PageTransition>
             <Outlet />
