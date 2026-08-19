@@ -163,7 +163,7 @@ function HomePage() {
             const firstSlug = categoryDepartments[0]?.slug;
             return (
               <Reveal key={category.slug} delay={i * 70}>
-                <GlassSpotlight className="glass glass-lift glass-sheen dept-card group flex h-full flex-col rounded-3xl p-5">
+                <GlassSpotlight className="glass glass-lift glass-sheen glass-spotlight dept-card group flex h-full flex-col rounded-3xl p-5">
                   <h3 className="dept-icon flex items-center gap-2 border-l-4 border-primary pl-3 text-base font-bold text-primary">
                     {category.name}
                   </h3>
@@ -241,7 +241,7 @@ function HomePage() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {reviews.map((r, i) => (
             <Reveal key={r.name} delay={i * 70}>
-              <GlassSpotlight as="figure" className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5">
+              <GlassSpotlight as="figure" className="glass glass-lift glass-sheen glass-spotlight flex h-full flex-col rounded-3xl p-5">
                 <div className="flex gap-0.5 text-primary">
                   {[0, 1, 2, 3, 4].map((n) => (
                     <Star key={n} className="size-4 fill-current" aria-hidden />
