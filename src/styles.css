@@ -188,8 +188,13 @@
 
 @layer base {
   body {
+    margin: 0;
+    background-color: var(--color-background);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+  }
+  html {
+    background-color: var(--color-background);
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
@@ -269,8 +274,8 @@
 
 @utility reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform: none;
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @utility reveal-in {
@@ -416,18 +421,17 @@
 @utility liquid-bg {
   position: relative;
   isolation: isolate;
-  overflow: hidden;
   &::before {
     content: "";
     position: absolute;
-    inset: -20%;
+    inset: 0;
     z-index: -1;
     background:
-      radial-gradient(38% 44% at 18% 22%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 70%),
-      radial-gradient(34% 40% at 82% 12%, color-mix(in oklab, var(--brand) 10%, transparent) 0%, transparent 70%),
-      radial-gradient(40% 46% at 70% 88%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 72%);
-    filter: blur(12px);
-    animation: liquid-drift 22s ease-in-out infinite alternate;
+      radial-gradient(42% 48% at 18% 22%, color-mix(in oklab, var(--brand) 38%, transparent) 0%, transparent 72%),
+      radial-gradient(38% 44% at 82% 12%, color-mix(in oklab, var(--brand) 30%, transparent) 0%, transparent 72%),
+      radial-gradient(44% 50% at 70% 88%, color-mix(in oklab, var(--brand) 32%, transparent) 0%, transparent 74%);
+    filter: blur(48px);
+    animation: none;
     pointer-events: none;
   }
 }
@@ -478,9 +482,8 @@
 }
 
 @keyframes liquid-drift {
-  0% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(2%, -2.5%, 0) scale(1.06); }
-  100% { transform: translate3d(-2%, 2%, 0) scale(1.03); }
+  0% { transform: none; }
+  100% { transform: none; }
 }
 
 @keyframes float-y {
@@ -503,8 +506,8 @@
 }
 
 @keyframes page-in {
-  0% { opacity: 0; transform: translateY(12px) scale(0.99); filter: blur(4px); }
-  100% { opacity: 1; transform: none; filter: none; }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

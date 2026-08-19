@@ -4,6 +4,13 @@ import { Search } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Reveal } from "@/components/site/Reveal";
 import { DoctorCard } from "@/components/site/DoctorCard";
 import { doctors, specialties } from "@/data/clinic";
@@ -70,19 +77,21 @@ function DoctorsPage() {
           </div>
           <div>
             <Label htmlFor="doc-specialty">Specialty</Label>
-            <select
-              id="doc-specialty"
-              value={specialty}
-              onChange={(e) => setSpecialty(e.target.value)}
-              className="mt-1 h-10 w-full glass rounded-xl px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            >
-              <option value="all">All specialties</option>
-              {specialties.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
+            <div className="mt-1">
+              <Select value={specialty} onValueChange={setSpecialty}>
+                <SelectTrigger id="doc-specialty">
+                  <SelectValue placeholder="All specialties" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All specialties</SelectItem>
+                  {specialties.map((s) => (
+                    <SelectItem key={s} value={s}>
+                      {s}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
 

@@ -3,6 +3,13 @@ import { useMemo, useState } from "react";
 import { ArrowRight, Search } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { clinic, departments, doctorAvailability, doctors, formatBlockDays } from "@/data/clinic";
 
 export const Route = createFileRoute("/book/")({
@@ -64,19 +71,19 @@ function BookIndexPage() {
               aria-label="Search doctors"
             />
           </div>
-          <select
-            value={dept}
-            onChange={(e) => setDept(e.target.value)}
-            aria-label="Filter by department"
-            className="h-10 w-full glass rounded-xl px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <option value="">All departments</option>
-            {departments.map((d) => (
-              <option key={d.slug} value={d.slug}>
-                {d.name}
-              </option>
-            ))}
-          </select>
+          <Select value={dept || "all"} onValueChange={(value) => setDept(value === "all" ? "" : value)}>
+            <SelectTrigger aria-label="Filter by department">
+              <SelectValue placeholder="All departments" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All departments</SelectItem>
+              {departments.map((d) => (
+                <SelectItem key={d.slug} value={d.slug}>
+                  {d.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
