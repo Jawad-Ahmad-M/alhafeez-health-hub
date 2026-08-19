@@ -289,10 +289,14 @@
 @utility glass {
   position: relative;
   isolation: isolate;
+  /* specular top arc + refracted brand glow at the bottom-right, layered
+     over the frosted base — no pseudo-elements so sheen/spotlight stay free */
   background:
+    radial-gradient(120% 70% at 20% -25%, oklch(1 0 0 / 0.6) 0%, transparent 60%),
+    radial-gradient(90% 65% at 108% 112%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 65%),
     linear-gradient(
       160deg,
-      oklch(1 0 0 / 0.58) 0%,
+      oklch(1 0 0 / 0.56) 0%,
       oklch(1 0 0 / 0.34) 42%,
       color-mix(in oklab, var(--brand-light) 45%, oklch(1 0 0 / 0.3)) 100%
     );
@@ -301,29 +305,11 @@
   box-shadow:
     0 1px 0 0 oklch(1 0 0 / 0.75) inset,
     0 -1px 0 0 color-mix(in oklab, var(--brand) 12%, transparent) inset,
-    0 0 0 0.5px color-mix(in oklab, var(--brand) 10%, transparent),
     0 22px 55px -28px color-mix(in oklab, var(--brand) 45%, transparent),
     0 2px 8px -4px oklch(0 0 0 / 0.06);
-  /* specular arc across the top edge — the tell of Apple's glass */
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    pointer-events: none;
-    z-index: 0;
-    background:
-      radial-gradient(120% 70% at 20% -25%, oklch(1 0 0 / 0.65) 0%, transparent 60%),
-      radial-gradient(90% 60% at 105% 110%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 65%);
-    opacity: 0.9;
-    transition: opacity 500ms ease;
-  }
   & > * {
     position: relative;
     z-index: 1;
-  }
-  &:hover::after {
-    opacity: 1;
   }
 }
 
