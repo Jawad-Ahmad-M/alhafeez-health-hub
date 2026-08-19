@@ -26,7 +26,7 @@ export function DoctorCard({ doctor }: { doctor: Doctor }) {
       className="glass glass-lift glass-sheen glass-spotlight group flex h-full flex-col rounded-3xl p-5"
     >
       <div className="flex items-start gap-4">
-        <span className="brand-gradient flex size-14 shrink-0 items-center justify-center rounded-2xl text-lg font-bold text-primary-foreground shadow-card transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-3">
+        <span className="brand-gradient flex size-14 shrink-0 items-center justify-center rounded-2xl text-lg font-bold text-primary-foreground shadow-card transition-transform duration-500 group-hover:scale-105">
           {initials(doctor.name)}
         </span>
         <div className="min-w-0">

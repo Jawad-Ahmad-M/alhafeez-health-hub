@@ -73,7 +73,7 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(0.965 0.012 20);
+  --background: oklch(0.88 0.045 25);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
@@ -165,7 +165,7 @@
   --whatsapp: oklch(0.63 0.16 148);
   --success: oklch(0.6 0.14 150);
 
-  --background: oklch(0.965 0.012 20);
+  --background: oklch(0.88 0.045 25);
   --foreground: oklch(0.19 0.005 285);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.19 0.005 285);
@@ -175,14 +175,14 @@
   --primary-foreground: oklch(0.995 0.002 20);
   --secondary: oklch(0.968 0.008 25);
   --secondary-foreground: oklch(0.372 0.152 27.5);
-  --muted: oklch(0.972 0.004 260);
-  --muted-foreground: oklch(0.5 0.008 285);
-  --accent: oklch(0.955 0.018 20);
+  --muted: oklch(0.95 0.01 25);
+  --muted-foreground: oklch(0.45 0.008 285);
+  --accent: oklch(0.935 0.025 25);
   --accent-foreground: oklch(0.372 0.152 27.5);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.995 0.002 20);
-  --border: oklch(0.918 0.005 270);
-  --input: oklch(0.918 0.005 270);
+  --border: oklch(0.91 0.015 25);
+  --input: oklch(0.91 0.015 25);
   --ring: oklch(0.446 0.185 27.3);
 }
 
@@ -285,8 +285,8 @@
 
 @utility glass {
   position: relative;
-  background: color-mix(in oklab, var(--card) 76%, transparent);
-  backdrop-filter: blur(18px) saturate(160%);
+  background: color-mix(in oklab, var(--card) 62%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid color-mix(in oklab, var(--brand) 14%, oklch(1 0 0 / 0.55));
   box-shadow:
     0 1px 0 0 oklch(1 0 0 / 0.6) inset,
@@ -393,10 +393,10 @@
     inset: -20%;
     z-index: -1;
     background:
-      radial-gradient(38% 44% at 18% 22%, color-mix(in oklab, var(--brand) 9%, transparent) 0%, transparent 70%),
-      radial-gradient(34% 40% at 82% 12%, color-mix(in oklab, var(--brand-light) 55%, transparent) 0%, transparent 70%),
-      radial-gradient(40% 46% at 70% 88%, color-mix(in oklab, var(--brand) 7%, transparent) 0%, transparent 72%);
-    filter: blur(10px);
+      radial-gradient(38% 44% at 18% 22%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 70%),
+      radial-gradient(34% 40% at 82% 12%, color-mix(in oklab, var(--brand) 10%, transparent) 0%, transparent 70%),
+      radial-gradient(40% 46% at 70% 88%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 72%);
+    filter: blur(12px);
     animation: liquid-drift 22s ease-in-out infinite alternate;
     pointer-events: none;
   }
