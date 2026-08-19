@@ -348,8 +348,7 @@
 @utility glass-sheen {
   position: relative;
   overflow: hidden;
-  & > .glass-sheen-layer,
-  &::before {
+  &::after {
     content: "";
     position: absolute;
     inset: 0;
@@ -360,7 +359,7 @@
     pointer-events: none;
     z-index: 2;
   }
-  &:hover::before {
+  &:hover::after {
     transform: translateX(120%);
   }
 }
