@@ -13,7 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { DemoBadge, FloatingWhatsApp, StickyMobileCTA } from "@/components/site/FloatingActions";
+import { DemoBadge, FloatingWhatsApp } from "@/components/site/FloatingActions";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -151,13 +151,12 @@ function RootComponent() {
       <div className="liquid-bg relative flex min-h-screen flex-col">
         {deferredUiReady ? <DemoBadge /> : null}
         <Header />
-        <main className="flex-1 pb-16 md:pb-0">
+        <main className="flex-1">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
           <Outlet />
         </main>
         <Footer />
         {deferredUiReady ? <FloatingWhatsApp /> : null}
-        {deferredUiReady ? <StickyMobileCTA /> : null}
         <Toaster position="top-center" richColors />
       </div>
     </QueryClientProvider>

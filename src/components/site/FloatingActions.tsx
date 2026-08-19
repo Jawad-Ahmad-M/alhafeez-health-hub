@@ -19,7 +19,7 @@ export function FloatingWhatsApp() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="glow-ring float-slow fixed bottom-20 right-4 z-40 inline-flex size-14 items-center justify-center rounded-full border border-white/40 bg-whatsapp text-whatsapp-foreground shadow-lift transition-transform duration-300 hover:scale-110 md:bottom-6 md:backdrop-blur-md"
+      className="glow-ring float-slow fixed bottom-20 right-4 z-40 hidden size-14 items-center justify-center rounded-full border border-white/40 bg-whatsapp text-whatsapp-foreground shadow-lift transition-transform duration-300 hover:scale-110 md:inline-flex md:bottom-6 md:backdrop-blur-md"
     >
       <MessageCircle className="size-7" aria-hidden />
     </a>
