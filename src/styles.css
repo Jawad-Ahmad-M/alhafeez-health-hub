@@ -416,6 +416,7 @@
 @utility liquid-bg {
   position: relative;
   isolation: isolate;
+  overflow: hidden;
   &::before {
     content: "";
     position: absolute;
