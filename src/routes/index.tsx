@@ -58,11 +58,11 @@ function HomePage() {
       <section className="hero-liquid relative text-primary-foreground">
         <span
           aria-hidden
-          className="float-slow pointer-events-none absolute -left-24 top-10 size-72 rounded-full bg-white/10 blur-3xl"
+          className="pointer-events-none absolute -left-24 top-10 hidden size-72 rounded-full bg-white/10 blur-3xl md:block"
         />
         <span
           aria-hidden
-          className="float-slow pointer-events-none absolute -right-16 bottom-0 size-80 rounded-full bg-white/10 blur-3xl [animation-delay:-3s]"
+          className="pointer-events-none absolute -right-16 bottom-0 hidden size-80 rounded-full bg-white/10 blur-3xl [animation-delay:-3s] md:block"
         />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-16 md:pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
@@ -96,7 +96,7 @@ function HomePage() {
             <p className="mt-6 text-sm opacity-80">{clinic.address}</p>
           </div>
 
-          <Reveal className="glass-dark glass-lift rounded-[1.75rem] p-6">
+          <Reveal className="glass-dark glass-lift glass-sheen glass-spotlight rounded-[1.75rem] p-6">
             <h2 className="text-sm font-semibold uppercase tracking-widest opacity-80">Today at a glance</h2>
             <ul className="mt-4 space-y-4 text-sm">
               <li className="flex items-start gap-3">
@@ -148,7 +148,7 @@ function HomePage() {
       </section>
 
       {/* Departments */}
-      <section className="liquid-bg mx-auto max-w-7xl px-4 py-16 md:py-20">
+      <section className="perf-section perf-mobile-lite liquid-bg mx-auto max-w-7xl px-4 py-16 md:py-20">
         <div className="max-w-2xl">
           <p className="section-eyebrow">Departments</p>
           <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Medical Specialties</h2>
@@ -202,7 +202,7 @@ function HomePage() {
       </section>
 
       {/* Featured doctors */}
-      <section className="liquid-bg bg-accent/40 py-16 md:py-20">
+      <section className="perf-section perf-mobile-lite liquid-bg bg-accent/40 py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
@@ -226,7 +226,7 @@ function HomePage() {
       </section>
 
       {/* Reviews */}
-      <section className="mx-auto max-w-7xl px-4 py-16 md:py-20">
+      <section className="perf-section perf-mobile-lite mx-auto max-w-7xl px-4 py-16 md:py-20">
         <div className="flex flex-col items-center text-center">
           <p className="section-eyebrow">Google Reviews</p>
           <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Rated 4.8 / 5 by our patients</h2>

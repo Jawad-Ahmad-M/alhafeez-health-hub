@@ -4,11 +4,10 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
-  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -132,34 +131,33 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
-function PageTransition({ children }: { children: ReactNode }) {
-  const routerState = useRouterState();
-  const key = routerState.location.pathname;
-
-  return (
-    <div key={key} className="page-enter">
-      {children}
-    </div>
-  );
-}
-
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [deferredUiReady, setDeferredUiReady] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (!isMobile) {
+      setDeferredUiReady(true);
+      return;
+    }
+    const id = window.setTimeout(() => setDeferredUiReady(true), 350);
+    return () => window.clearTimeout(id);
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <div className="liquid-bg relative flex min-h-screen flex-col">
-        <DemoBadge />
+        {deferredUiReady ? <DemoBadge /> : null}
         <Header />
         <main className="flex-1 pb-16 md:pb-0">
           {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <PageTransition>
-            <Outlet />
-          </PageTransition>
+          <Outlet />
         </main>
         <Footer />
-        <FloatingWhatsApp />
-        <StickyMobileCTA />
+        {deferredUiReady ? <FloatingWhatsApp /> : null}
+        {deferredUiReady ? <StickyMobileCTA /> : null}
         <Toaster position="top-center" richColors />
       </div>
     </QueryClientProvider>

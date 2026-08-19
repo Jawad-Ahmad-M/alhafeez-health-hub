@@ -32,7 +32,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className="border-b border-white/40 bg-background/60 shadow-[0_10px_40px_-28px_oklch(0.44_0.19_26/0.5)] backdrop-blur-2xl backdrop-saturate-150">
+      <div className="border-b border-white/40 bg-background/88 shadow-[0_10px_40px_-28px_oklch(0.44_0.19_26/0.5)] backdrop-blur-sm md:bg-background/60 md:backdrop-blur-2xl md:backdrop-saturate-150">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
           <Link to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
             <span className="brand-gradient glass-sheen flex size-11 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-primary-foreground shadow-card transition-transform duration-500 group-hover:scale-105 group-hover:rotate-3">

@@ -24,7 +24,11 @@ export function useGlassSpotlight<T extends HTMLElement>(ref: RefObject<T | null
     const prefersReduced =
       typeof window.matchMedia === "function" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isCoarsePointer =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(hover: none), (pointer: coarse)").matches;
     if (prefersReduced) return;
+    if (isCoarsePointer) return;
 
     const flush = () => {
       raf.current = null;

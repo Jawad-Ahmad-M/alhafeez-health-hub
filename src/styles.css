@@ -501,13 +501,70 @@
   100% { background-position: -150% 0; }
 }
 
-@utility page-enter {
-  animation: page-in 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
+@media (max-width: 768px) {
+  .perf-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 900px;
+  }
 
-@keyframes page-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  .float-slow,
+  .glow-ring,
+  .shimmer-text {
+    animation: none !important;
+  }
+
+  .glass,
+  .glass-panel,
+  .glass-dark {
+    backdrop-filter: blur(12px) saturate(120%) brightness(1.02);
+  }
+
+  .glass-soft {
+    backdrop-filter: blur(8px) saturate(120%);
+  }
+
+  .glass-sheen::after,
+  .glass-spotlight::before,
+  .hero-liquid::before,
+  .hero-liquid::after {
+    display: none;
+  }
+
+  .glass-lift,
+  .dept-card .dept-icon,
+  .dept-card .dept-link,
+  .dept-card .dept-cta,
+  .dept-card .dept-cta svg {
+    transition-duration: 140ms;
+  }
+
+  .glass-lift:hover {
+    transform: translateY(-3px);
+    backdrop-filter: blur(12px) saturate(120%) brightness(1.02);
+  }
+
+  /* Most mobile lag comes from many backdrop-filter layers in long card grids.
+     Keep the same glass color language, but switch to a non-filter glass for
+     dense sections only. */
+  .perf-mobile-lite .glass,
+  .perf-mobile-lite .glass-dark,
+  .perf-mobile-lite .glass-soft,
+  .perf-mobile-lite .glass-panel {
+    backdrop-filter: none !important;
+    background:
+      linear-gradient(165deg, oklch(1 0 0 / 0.86) 0%, oklch(1 0 0 / 0.72) 100%) !important;
+    border: 1px solid oklch(1 0 0 / 0.62) !important;
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.72) inset,
+      0 10px 26px -20px color-mix(in oklab, var(--brand) 35%, transparent) !important;
+  }
+
+  .perf-mobile-lite .glass-lift:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 0 oklch(1 0 0 / 0.76) inset,
+      0 14px 30px -24px color-mix(in oklab, var(--brand) 40%, transparent) !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
