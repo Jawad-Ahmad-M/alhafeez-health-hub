@@ -5,7 +5,7 @@ import { clinic, departments } from "@/data/clinic";
 
 export function Footer() {
   return (
-    <footer className="hero-mesh relative mt-20 overflow-hidden border-t border-white/10 text-primary-foreground">
+    <footer className="hero-mesh relative mt-16 overflow-hidden border-t border-white/10 text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">
