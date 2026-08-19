@@ -163,7 +163,7 @@ function BookDoctorPage() {
                       className={
                         active
                           ? "rounded-xl border border-primary bg-primary px-3.5 py-2.5 text-left text-sm font-semibold text-primary-foreground"
-                          : "rounded-xl border border-border bg-background px-3.5 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+                          : "glass-soft glass-lift rounded-xl px-3.5 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
                       }
                     >
                       <span className="block text-xs uppercase tracking-wide opacity-80">
@@ -202,7 +202,7 @@ function BookDoctorPage() {
                     className={
                       active
                         ? "rounded-full border border-primary bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
-                        : "rounded-full border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+                        : "glass-soft rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
                     }
                   >
                     {t}

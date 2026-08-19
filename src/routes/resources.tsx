@@ -52,7 +52,7 @@ function ResourcesPage() {
       <section className="mx-auto max-w-5xl px-4 py-12">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {FACILITIES.map((f) => (
-            <div key={f.title} className="glass glass-lift glass-sheen rounded-3xl p-5">
+            <div key={f.title} className="glass glass-lift glass-sheen glass-spotlight rounded-3xl p-5">
               <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
                 <f.icon className="size-5" aria-hidden />
               </span>

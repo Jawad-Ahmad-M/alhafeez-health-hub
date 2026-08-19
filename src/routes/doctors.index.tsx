@@ -74,7 +74,7 @@ function DoctorsPage() {
               id="doc-specialty"
               value={specialty}
               onChange={(e) => setSpecialty(e.target.value)}
-              className="mt-1 h-10 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="mt-1 h-10 w-full glass rounded-xl px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <option value="all">All specialties</option>
               {specialties.map((s) => (

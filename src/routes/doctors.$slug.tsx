@@ -76,7 +76,7 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass glass-lift glass-sheen rounded-3xl p-6">
+    <div className="glass glass-lift glass-sheen glass-spotlight rounded-3xl p-6">
       <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
         <Icon className="size-5 text-primary" aria-hidden />
         {title}
@@ -161,7 +161,7 @@ function DoctorProfile() {
                 {doctor.achievements.map((a) => (
                   <p
                     key={a}
-                    className="rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground"
+                    className="glass-soft rounded-xl px-4 py-3 text-sm font-semibold text-accent-foreground"
                   >
                     {a}
                   </p>
@@ -189,7 +189,7 @@ function DoctorProfile() {
             <Card icon={MapPin} title="Clinic Locations & Timings">
               <div className="grid gap-4 sm:grid-cols-2">
                 {doctor.locations.map((loc) => (
-                  <div key={loc.name} className="rounded-xl border border-border p-4">
+                  <div key={loc.name} className="glass-soft glass-lift rounded-xl p-4">
                     <h3 className="text-sm font-bold text-foreground">{loc.name}</h3>
                     <p className="mt-1 text-xs text-muted-foreground">{loc.address}</p>
                     <ul className="mt-2 space-y-1 text-xs font-medium text-primary">
@@ -242,7 +242,7 @@ function DoctorProfile() {
             </h2>
             <ul className="mt-4 space-y-3 text-sm">
               {blocks.map((b) => (
-                <li key={`${b.start}-${b.days.join(",")}`} className="rounded-xl bg-accent/60 p-3">
+                <li key={`${b.start}-${b.days.join(",")}`} className="glass-soft rounded-xl p-3">
                   <p className="font-semibold text-foreground">{formatBlockDays(b)}</p>
                   <p className="text-muted-foreground">
                     {b.start} – {b.end}

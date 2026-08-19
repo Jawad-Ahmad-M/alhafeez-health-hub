@@ -68,7 +68,7 @@ function BookIndexPage() {
             value={dept}
             onChange={(e) => setDept(e.target.value)}
             aria-label="Filter by department"
-            className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="h-10 w-full glass rounded-xl px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             <option value="">All departments</option>
             {departments.map((d) => (
@@ -87,7 +87,7 @@ function BookIndexPage() {
                 key={d.slug}
                 to="/book/$slug"
                 params={{ slug: d.slug }}
-                className="glass glass-lift glass-sheen flex h-full flex-col rounded-3xl p-5"
+                className="glass glass-lift glass-sheen glass-spotlight flex h-full flex-col rounded-3xl p-5"
               >
                 <h2 className="text-base font-bold text-foreground">{d.name}</h2>
                 <p className="text-sm font-medium text-primary">{d.specialty}</p>
