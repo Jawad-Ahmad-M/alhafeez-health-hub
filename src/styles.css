@@ -289,18 +289,13 @@
 @utility glass {
   position: relative;
   isolation: isolate;
-  /* specular top arc + refracted brand glow at the bottom-right, layered
-     over the frosted base — no pseudo-elements so sheen/spotlight stay free */
+  /* specular top arc + faint refracted brand glow, over a near-neutral
+     frost — no pseudo-elements so sheen/spotlight stay free */
   background:
-    radial-gradient(120% 70% at 20% -25%, oklch(1 0 0 / 0.6) 0%, transparent 60%),
-    radial-gradient(90% 65% at 108% 112%, color-mix(in oklab, var(--brand) 12%, transparent) 0%, transparent 65%),
-    linear-gradient(
-      160deg,
-      oklch(1 0 0 / 0.56) 0%,
-      oklch(1 0 0 / 0.34) 42%,
-      color-mix(in oklab, var(--brand-light) 45%, oklch(1 0 0 / 0.3)) 100%
-    );
-  backdrop-filter: blur(28px) saturate(190%) brightness(1.06);
+    radial-gradient(130% 75% at 18% -30%, oklch(1 0 0 / 0.7) 0%, transparent 62%),
+    radial-gradient(85% 60% at 110% 115%, color-mix(in oklab, var(--brand) 7%, transparent) 0%, transparent 62%),
+    linear-gradient(165deg, oklch(1 0 0 / 0.62) 0%, oklch(1 0 0 / 0.42) 55%, oklch(1 0 0 / 0.5) 100%);
+  backdrop-filter: blur(30px) saturate(140%) brightness(1.08);
   border: 1px solid oklch(1 0 0 / 0.5);
   box-shadow:
     0 1px 0 0 oklch(1 0 0 / 0.75) inset,
