@@ -52,7 +52,7 @@ function ServicesPage() {
                 <span className="text-sm font-semibold text-primary">{depts.length} departments</span>
               </div>
 
-              <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="card-grid mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {depts.map((d, i) => {
                   const count = doctorsForDepartment(d.slug).length;
                   return (

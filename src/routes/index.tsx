@@ -157,7 +157,7 @@ function HomePage() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="card-grid mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {departmentCategories.map((category, i) => {
             const categoryDepartments = departmentsInCategory(category);
             const firstSlug = categoryDepartments[0]?.slug;
@@ -215,7 +215,7 @@ function HomePage() {
             </Button>
           </div>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="card-grid mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((doc, i) => (
               <Reveal key={doc.slug} delay={i * 80}>
                 <DoctorCard doctor={doc} />
@@ -238,7 +238,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="card-grid mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {reviews.map((r, i) => (
             <Reveal key={r.name} delay={i * 70}>
               <GlassSpotlight as="figure" className="glass glass-lift glass-sheen glass-spotlight flex h-full flex-col rounded-3xl p-5">

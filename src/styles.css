@@ -507,20 +507,30 @@
     contain-intrinsic-size: 900px;
   }
 
+  /* GPU containment for card grids — prevents repaint cascades when
+     one card's backdrop-filter recomputes. */
+  .card-grid {
+    contain: layout style;
+  }
+
   .float-slow,
   .glow-ring,
   .shimmer-text {
     animation: none !important;
   }
 
-  .glass,
-  .glass-panel,
-  .glass-dark {
-    backdrop-filter: blur(12px) saturate(120%) brightness(1.02);
+  /* One backdrop-filter layer max, lighter blur, no brightness shift. */
+  .glass {
+    backdrop-filter: blur(10px) saturate(115%);
   }
-
+  .glass-panel {
+    backdrop-filter: blur(12px) saturate(120%);
+  }
+  .glass-dark {
+    backdrop-filter: blur(10px) saturate(110%);
+  }
   .glass-soft {
-    backdrop-filter: blur(8px) saturate(120%);
+    backdrop-filter: blur(6px) saturate(110%);
   }
 
   .glass-sheen::after,
@@ -530,7 +540,9 @@
     display: none;
   }
 
-  .glass-lift,
+  .glass-lift {
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
   .dept-card .dept-icon,
   .dept-card .dept-link,
   .dept-card .dept-cta,
@@ -539,31 +551,42 @@
   }
 
   .glass-lift:hover {
-    transform: translateY(-3px);
-    backdrop-filter: blur(12px) saturate(120%) brightness(1.02);
+    transform: translateY(-3px) scale(1.01);
   }
 
-  /* Most mobile lag comes from many backdrop-filter layers in long card grids.
-     Keep the same glass color language, but switch to a non-filter glass for
-     dense sections only. */
+  /* Dense grids: skip backdrop-filter entirely, use a static frost.
+     Same visual language, near-zero compositor cost. */
   .perf-mobile-lite .glass,
   .perf-mobile-lite .glass-dark,
   .perf-mobile-lite .glass-soft,
   .perf-mobile-lite .glass-panel {
     backdrop-filter: none !important;
     background:
-      linear-gradient(165deg, oklch(1 0 0 / 0.86) 0%, oklch(1 0 0 / 0.72) 100%) !important;
+      linear-gradient(165deg, oklch(1 0 0 / 0.88) 0%, oklch(1 0 0 / 0.74) 100%) !important;
     border: 1px solid oklch(1 0 0 / 0.62) !important;
     box-shadow:
       0 1px 0 0 oklch(1 0 0 / 0.72) inset,
-      0 10px 26px -20px color-mix(in oklab, var(--brand) 35%, transparent) !important;
+      0 8px 20px -16px color-mix(in oklab, var(--brand) 30%, transparent) !important;
   }
 
   .perf-mobile-lite .glass-lift:hover {
     transform: translateY(-2px);
     box-shadow:
       0 1px 0 0 oklch(1 0 0 / 0.76) inset,
-      0 14px 30px -24px color-mix(in oklab, var(--brand) 40%, transparent) !important;
+      0 12px 24px -20px color-mix(in oklab, var(--brand) 35%, transparent) !important;
+  }
+}
+
+/* Very small phones — strip all filters, tighten spacing. */
+@media (max-width: 400px) {
+  .glass,
+  .glass-panel,
+  .glass-dark,
+  .glass-soft {
+    backdrop-filter: none !important;
+  }
+  .glass-lift:hover {
+    transform: none;
   }
 }
 

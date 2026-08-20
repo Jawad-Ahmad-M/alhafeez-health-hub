@@ -104,7 +104,7 @@ function DoctorsPage() {
             No doctors match your search. Try a different name or specialty.
           </p>
         ) : (
-          <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="card-grid mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((doc, i) => (
               <Reveal key={doc.slug} delay={(i % 3) * 60}>
                 <DoctorCard doctor={doc} />
