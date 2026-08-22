@@ -66,6 +66,13 @@ function HomePage() {
         />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-16 md:pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
+            <img
+              src={logoAsset.url}
+              alt="Al-Hafeez Specialist Medical Center logo"
+              className="mb-6 h-16 w-auto drop-shadow-[0_8px_24px_oklch(0_0_0/0.35)] sm:h-20"
+              width={320}
+              height={128}
+            />
             <span className="glass-dark glass-sheen inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.18em]">
               <Star className="size-3.5" aria-hidden /> Multi-specialty hospital · Daska
             </span>
