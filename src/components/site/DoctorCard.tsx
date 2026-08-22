@@ -23,7 +23,7 @@ export function DoctorCard({ doctor }: { doctor: Doctor }) {
   return (
     <article
       ref={ref as React.RefObject<HTMLElement>}
-      className="glass glass-lift glass-sheen glass-spotlight group flex h-full flex-col rounded-3xl p-5"
+      className="glass glass-lift glass-sheen glass-spotlight group flex h-full flex-col rounded-3xl p-4 sm:p-5"
     >
       <div className="flex items-start gap-4">
         <span className="brand-gradient flex size-14 shrink-0 items-center justify-center rounded-2xl text-lg font-bold text-primary-foreground shadow-card transition-transform duration-500 group-hover:scale-105">

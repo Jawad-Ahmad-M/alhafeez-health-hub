@@ -7,7 +7,7 @@ function ReviewCard({ review }: { review: Review }) {
   return (
     <GlassSpotlight
       as="figure"
-      className="glass glass-lift glass-sheen glass-spotlight flex w-[19rem] shrink-0 flex-col rounded-3xl p-5 sm:w-[21rem]"
+      className="glass glass-lift glass-sheen glass-spotlight flex w-[17.5rem] shrink-0 flex-col rounded-3xl p-4.5 sm:w-[21rem] sm:p-5"
     >
       <div className="flex items-center justify-between">
         <div className="flex gap-0.5 text-primary" aria-label={`${review.rating} out of 5 stars`}>

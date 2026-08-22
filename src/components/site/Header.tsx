@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Clock, Menu, Phone, X } from "lucide-react";
+import { Calendar, ChevronRight, Clock, Menu, MessageCircle, Phone, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { clinic } from "@/data/clinic";
@@ -35,20 +35,20 @@ export function Header() {
         </div>
       </div>
 
-      <div className="border-b border-border/80 bg-background/88 shadow-[0_10px_40px_-28px_oklch(0.44_0.19_26/0.3)] backdrop-blur-md dark:border-white/10 dark:bg-background/90 md:bg-background/70 md:backdrop-blur-2xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2.5">
-          <Link to="/" className="group flex items-center" onClick={() => setOpen(false)}>
+      <div className="border-b border-border/80 bg-background/90 shadow-[0_10px_40px_-28px_oklch(0.44_0.19_26/0.3)] backdrop-blur-md dark:border-white/10 dark:bg-background/95 md:bg-background/75 md:backdrop-blur-2xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3.5 py-2.5 sm:px-4">
+          <Link to="/" className="group flex shrink-0 items-center" onClick={() => setOpen(false)}>
             <img
               src={logoDarkImg}
               alt="Al-Hafeez Specialist Medical Center"
-              className="h-11 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-12 dark:hidden"
+              className="h-9.5 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-11 md:h-12 dark:hidden"
               width={220}
               height={84}
             />
             <img
               src={logoWhiteImg}
               alt="Al-Hafeez Specialist Medical Center"
-              className="hidden h-11 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-12 dark:block"
+              className="hidden h-9.5 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-11 md:h-12 dark:block"
               width={220}
               height={84}
             />
@@ -85,7 +85,7 @@ export function Header() {
             </Button>
             <button
               type="button"
-              className="inline-flex size-10 items-center justify-center rounded-md border border-border text-foreground lg:hidden"
+              className="inline-flex size-10 items-center justify-center rounded-xl border border-border/80 bg-background/80 text-foreground transition-all hover:bg-accent active:scale-95 dark:border-white/10 dark:bg-card/80 lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
@@ -96,28 +96,47 @@ export function Header() {
         </div>
 
         {open && (
-          <nav className="border-t border-border bg-background px-4 py-3 lg:hidden" aria-label="Mobile">
-            <ul className="space-y-1">
+          <nav className="border-t border-border/80 bg-background/98 px-4 pb-5 pt-3 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-card/98 lg:hidden animate-in fade-in slide-in-from-top-2 duration-200" aria-label="Mobile">
+            <ul className="space-y-1.5">
               {NAV.map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}
                     activeOptions={{ exact: item.to === "/" }}
-                    activeProps={{ className: "bg-accent text-accent-foreground" }}
+                    activeProps={{ className: "bg-primary/12 font-bold text-primary dark:bg-primary/20 dark:text-primary-foreground" }}
                     onClick={() => setOpen(false)}
-                    className="block rounded-md px-3 py-2.5 text-sm font-medium text-foreground hover:bg-accent"
+                    className="flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    <ChevronRight className="size-4 opacity-40" />
                   </Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-3 flex items-center gap-2">
-              <Button asChild className="flex-1">
+
+            <div className="mt-4 flex flex-col gap-2 border-t border-border/80 pt-3 dark:border-white/10">
+              <Button asChild className="h-11 w-full justify-center gap-2 rounded-xl text-sm font-bold shadow-card">
                 <Link to="/book" onClick={() => setOpen(false)}>
+                  <Calendar className="size-4" aria-hidden />
                   Book Appointment
                 </Link>
               </Button>
+              <div className="grid grid-cols-2 gap-2">
+                <a
+                  href={`tel:${clinic.phoneRaw}`}
+                  className="flex h-10 items-center justify-center gap-1.5 rounded-xl border border-border/80 bg-secondary px-3 text-xs font-semibold text-secondary-foreground transition-transform active:scale-98 dark:border-white/10"
+                >
+                  <Phone className="size-3.5" aria-hidden /> Call Clinic
+                </a>
+                <a
+                  href={clinic.whatsappUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex h-10 items-center justify-center gap-1.5 rounded-xl bg-whatsapp px-3 text-xs font-semibold text-whatsapp-foreground transition-transform active:scale-98"
+                >
+                  <MessageCircle className="size-3.5" aria-hidden /> WhatsApp
+                </a>
+              </div>
             </div>
           </nav>
         )}
