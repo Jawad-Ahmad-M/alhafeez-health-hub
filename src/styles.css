@@ -181,8 +181,14 @@
 @layer base {
   html {
     background-color: var(--color-background);
-    scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
   body {
     margin: 0;
@@ -191,6 +197,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    -webkit-overflow-scrolling: touch;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
@@ -597,19 +604,12 @@
  * Ultra-Performance Mobile Engine (Zero GPU bottlenecks on phones)
  * ------------------------------------------------------------------ */
 @media (max-width: 768px), (hover: none) {
-  /* Remove heavy continuous blur on the full-page background */
+  /* Eliminate the massive 6,000px height pseudo-element texture layer on mobile */
   .liquid-bg::before {
-    filter: none !important;
-    background:
-      radial-gradient(60% 50% at 20% 15%, color-mix(in oklab, var(--brand) 18%, transparent) 0%, transparent 80%),
-      radial-gradient(55% 45% at 80% 85%, color-mix(in oklab, var(--brand) 14%, transparent) 0%, transparent 80%) !important;
+    display: none !important;
   }
-
-  .dark .liquid-bg::before {
-    filter: none !important;
-    background:
-      radial-gradient(60% 50% at 20% 15%, color-mix(in oklab, var(--brand) 10%, transparent) 0%, transparent 80%),
-      radial-gradient(55% 45% at 80% 85%, color-mix(in oklab, var(--brand) 8%, transparent) 0%, transparent 80%) !important;
+  .liquid-bg {
+    background-color: var(--background) !important;
   }
 
   .perf-section {
@@ -619,7 +619,7 @@
 
   /* GPU containment for card grids */
   .card-grid {
-    contain: layout style;
+    contain: layout style paint;
   }
 
   .float-slow,
@@ -628,7 +628,7 @@
     animation: none !important;
   }
 
-  /* Eliminate expensive multi-pass Gaussian backdrop-filter on all mobile cards */
+  /* Eliminate expensive multi-pass Gaussian backdrop-filter and complex inset shadows on all mobile cards */
   .glass,
   .glass-panel,
   .glass-dark,
@@ -637,11 +637,9 @@
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background:
-      linear-gradient(165deg, oklch(1 0 0 / 0.94) 0%, oklch(1 0 0 / 0.84) 100%) !important;
+      linear-gradient(165deg, oklch(1 0 0 / 0.96) 0%, oklch(1 0 0 / 0.88) 100%) !important;
     border: 1px solid oklch(1 0 0 / 0.65) !important;
-    box-shadow:
-      0 1px 0 0 oklch(1 0 0 / 0.75) inset,
-      0 6px 18px -12px color-mix(in oklab, var(--brand) 25%, transparent) !important;
+    box-shadow: 0 2px 8px -2px oklch(0 0 0 / 0.06) !important;
   }
 
   .dark .glass,
@@ -654,17 +652,17 @@
     background:
       linear-gradient(165deg, oklch(0.185 0.022 260 / 0.98) 0%, oklch(0.155 0.018 260 / 0.94) 100%) !important;
     border: 1px solid oklch(1 0 0 / 0.12) !important;
-    box-shadow:
-      0 1px 0 0 oklch(1 0 0 / 0.14) inset,
-      0 6px 18px -12px oklch(0 0 0 / 0.7) !important;
+    box-shadow: 0 2px 8px -2px oklch(0 0 0 / 0.4) !important;
   }
 
   .glass-soft {
-    background: linear-gradient(150deg, oklch(1 0 0 / 0.9), color-mix(in oklab, var(--brand-light) 40%, oklch(1 0 0 / 0.8))) !important;
+    background: linear-gradient(150deg, oklch(1 0 0 / 0.92), color-mix(in oklab, var(--brand-light) 40%, oklch(1 0 0 / 0.85))) !important;
+    box-shadow: 0 1px 4px oklch(0 0 0 / 0.04) !important;
   }
 
   .dark .glass-soft {
     background: linear-gradient(150deg, oklch(0.22 0.025 260 / 0.95), oklch(0.17 0.02 260 / 0.9)) !important;
+    box-shadow: 0 1px 4px oklch(0 0 0 / 0.3) !important;
   }
 
   /* Disable pseudo-elements and spot-light listeners on touch screens */

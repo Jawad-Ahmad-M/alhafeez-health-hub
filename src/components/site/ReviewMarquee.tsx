@@ -45,11 +45,23 @@ function ReviewCard({ review }: { review: Review }) {
 
 export function ReviewMarquee({ reviews }: { reviews: Review[] }) {
   return (
-    <div className="marquee mt-10" role="region" aria-label="Patient reviews">
-      <div className="marquee-track gap-5">
-        {[...reviews, ...reviews].map((review, i) => (
-          <ReviewCard key={`${review.name}-${i}`} review={review} />
+    <div className="mt-8 sm:mt-10 w-full" role="region" aria-label="Patient reviews">
+      {/* Mobile: 100% native smooth touch swipe with zero continuous animation overhead */}
+      <div className="flex md:hidden w-full overflow-x-auto snap-x snap-mandatory gap-3.5 px-4 pb-4 pt-1 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {reviews.map((review, i) => (
+          <div key={`mob-${review.name}-${i}`} className="snap-center shrink-0">
+            <ReviewCard review={review} />
+          </div>
         ))}
+      </div>
+
+      {/* Desktop: Smooth auto-scrolling marquee */}
+      <div className="hidden md:block marquee">
+        <div className="marquee-track gap-5">
+          {[...reviews, ...reviews].map((review, i) => (
+            <ReviewCard key={`desk-${review.name}-${i}`} review={review} />
+          ))}
+        </div>
       </div>
     </div>
   );
