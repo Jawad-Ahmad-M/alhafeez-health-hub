@@ -35,7 +35,7 @@ NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 const NavigationMenuItem = NavigationMenuPrimitive.Item;
 
 const navigationMenuTriggerStyle = cva(
-  "group inline-flex h-9 w-max items-center justify-center rounded-full bg-white/35 px-4 py-2 text-sm font-medium cursor-pointer transition-colors hover:bg-accent/70 hover:text-accent-foreground focus:bg-accent/70 focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/80 data-[state=open]:hover:bg-accent/80 data-[state=open]:focus:bg-accent/80",
+  "group inline-flex h-9 w-max items-center justify-center rounded-full bg-background/60 dark:bg-white/5 border border-border/70 dark:border-white/10 px-4 py-2 text-sm font-medium cursor-pointer transition-colors hover:bg-accent hover:text-accent-foreground dark:hover:bg-white/10 focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed data-[state=open]:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent",
 );
 
 const NavigationMenuTrigger = React.forwardRef<
@@ -80,7 +80,7 @@ const NavigationMenuViewport = React.forwardRef<
   <div className={cn("absolute left-0 top-full flex justify-center")}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "glass origin-top-center relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl border-white/50 bg-white/70 text-foreground shadow-lift backdrop-blur-2xl",
+        "glass origin-top-center relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl border border-border/80 bg-popover/95 text-popover-foreground shadow-lift backdrop-blur-2xl dark:border-white/12 dark:bg-card/95",
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
         className,
       )}

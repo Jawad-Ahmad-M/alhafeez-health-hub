@@ -19,7 +19,7 @@ const SelectTrigger = React.forwardRef<
   <SelectPrimitive.Trigger
     ref={ref}
     className={cn(
-      "glass-sheen flex h-10 w-full items-center justify-between whitespace-nowrap rounded-xl border border-white/50 bg-white/50 px-3.5 py-2 text-sm shadow-card ring-offset-background cursor-pointer data-[placeholder]:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+      "glass-sheen flex h-10 w-full items-center justify-between whitespace-nowrap rounded-xl border border-border/80 bg-background/80 px-3.5 py-2 text-sm text-foreground shadow-card ring-offset-background cursor-pointer data-[placeholder]:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring dark:border-white/10 dark:bg-card/80 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
       className,
     )}
     {...props}
@@ -68,7 +68,7 @@ const SelectContent = React.forwardRef<
     <SelectPrimitive.Content
       ref={ref}
       className={cn(
-        "glass relative z-50 max-h-(--radix-select-content-available-height) min-w-[10rem] overflow-y-auto overflow-x-hidden rounded-xl border-white/50 bg-white/70 text-foreground shadow-lift backdrop-blur-2xl",
+        "glass relative z-50 max-h-(--radix-select-content-available-height) min-w-[10rem] overflow-y-auto overflow-x-hidden rounded-xl border border-border/80 bg-popover/95 p-1 text-popover-foreground shadow-lift backdrop-blur-2xl dark:border-white/12 dark:bg-card/95",
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
         "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-(--radix-select-content-transform-origin)",
         position === "popper" &&
