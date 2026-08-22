@@ -1,29 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-// Global IntersectionObserver registry
-let globalObserver: IntersectionObserver | null = null;
-const observerCallbacks = new WeakMap<Element, () => void>();
-
-function getGlobalObserver(): IntersectionObserver {
-  if (!globalObserver) {
-    globalObserver = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const callback = observerCallbacks.get(entry.target);
-            if (callback) {
-              callback();
-            }
-          }
-        }
-      },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.05 },
-    );
-  }
-  return globalObserver;
-}
-
 export function Reveal({
   children,
   delay = 0,
@@ -40,13 +17,19 @@ export function Reveal({
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-    if (shown) return;
+    if (!el || shown) return;
 
-    if (typeof IntersectionObserver === "undefined") {
+    // Mobile / touch fast path: render immediately with zero observer or RAF overhead
+    if (
+      typeof window === "undefined" ||
+      typeof IntersectionObserver === "undefined" ||
+      window.innerWidth < 768 ||
+      (typeof window.matchMedia === "function" && window.matchMedia("(hover: none)").matches)
+    ) {
       setShown(true);
       return;
     }
+
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -56,18 +39,18 @@ export function Reveal({
           }
         }
       },
-      { rootMargin: "0px 0px -8% 0px", threshold: 0.05, },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.05 },
     );
     io.observe(el);
     return () => io.disconnect();
-  }, []);
+  }, [shown]);
 
   const Component = Tag as "div";
 
   return (
     <Component
       ref={ref}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ transitionDelay: shown ? `${delay}ms` : "0ms" }}
       className={cn("reveal", shown && "reveal-in", className)}
     >
       {children}

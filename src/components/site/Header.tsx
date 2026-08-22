@@ -20,7 +20,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full">
+    <header className="sticky top-0 z-40 w-full transform-gpu">
       <div className="hidden bg-brand-dark text-primary-foreground md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-2 pl-40 text-xs">
           <p className="opacity-90">{clinic.address}</p>
@@ -35,7 +35,7 @@ export function Header() {
         </div>
       </div>
 
-      <div className="border-b border-border/80 bg-background/90 shadow-[0_10px_40px_-28px_oklch(0.44_0.19_26/0.3)] backdrop-blur-md dark:border-white/10 dark:bg-background/95 md:bg-background/75 md:backdrop-blur-2xl">
+      <div className="border-b border-border/80 bg-background/95 shadow-[0_10px_40px_-28px_oklch(0.44_0.19_26/0.3)] dark:border-white/10 dark:bg-background/95 md:bg-background/80 md:backdrop-blur-2xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3.5 py-2.5 sm:px-4">
           <Link to="/" className="group flex shrink-0 items-center" onClick={() => setOpen(false)}>
             <img

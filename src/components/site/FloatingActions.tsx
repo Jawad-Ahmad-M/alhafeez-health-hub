@@ -29,8 +29,8 @@ export function FloatingWhatsApp() {
 
 export function StickyMobileCTA() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 p-2.5 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden">
-      <div className="mx-auto flex max-w-md items-center gap-2 rounded-2xl border border-border/80 bg-background/95 p-1.5 shadow-[0_-8px_32px_oklch(0_0_0/0.15)] backdrop-blur-2xl dark:border-white/12 dark:bg-card/95 dark:shadow-[0_-8px_32px_oklch(0_0_0/0.6)]">
+    <div className="fixed inset-x-0 bottom-0 z-40 transform-gpu p-2.5 pb-[max(0.75rem,env(safe-area-inset-bottom))] md:hidden">
+      <div className="mx-auto flex max-w-md items-center gap-2 rounded-2xl border border-border/80 bg-background/98 p-1.5 shadow-[0_-8px_32px_oklch(0_0_0/0.15)] dark:border-white/12 dark:bg-card/98 dark:shadow-[0_-8px_32px_oklch(0_0_0/0.6)]">
         <a
           href={`tel:${clinic.phoneRaw}`}
           aria-label="Call clinic"

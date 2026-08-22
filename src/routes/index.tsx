@@ -141,7 +141,7 @@ function HomePage() {
       </section>
 
       {/* Trust bar */}
-      <section className="liquid-bg relative -mt-10 px-3.5 sm:px-4">
+      <section className="relative -mt-10 px-3.5 sm:px-4">
         <div className="glass-panel mx-auto grid max-w-7xl grid-cols-2 gap-3.5 rounded-2xl p-4 sm:gap-6 sm:rounded-3xl sm:px-5 sm:py-8 lg:grid-cols-4">
           {STATS.map((s, i) => (
             <Reveal key={s.label} delay={i * 70} className="group flex items-center gap-2.5 sm:gap-3">
@@ -158,7 +158,7 @@ function HomePage() {
       </section>
 
       {/* Departments */}
-      <section className="perf-section perf-mobile-lite liquid-bg mx-auto max-w-7xl px-4 py-12 sm:py-16 md:py-20">
+      <section className="perf-section mx-auto max-w-7xl px-4 py-12 sm:py-16 md:py-20">
         <div className="max-w-2xl">
           <p className="section-eyebrow">Departments</p>
           <h2 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">Medical Specialties</h2>
@@ -212,7 +212,7 @@ function HomePage() {
       </section>
 
       {/* Featured doctors */}
-      <section className="perf-section perf-mobile-lite liquid-bg bg-accent/25 py-12 dark:bg-card/40 sm:py-16 md:py-20">
+      <section className="perf-section py-12 sm:py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
@@ -236,7 +236,7 @@ function HomePage() {
       </section>
 
       {/* Reviews */}
-      <section className="perf-section perf-mobile-lite py-12 sm:py-16 md:py-20">
+      <section className="perf-section py-12 sm:py-16 md:py-20">
         <div className="mx-auto flex max-w-7xl flex-col items-center px-4 text-center">
           <p className="section-eyebrow">Patient Reviews</p>
           <h2 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">
