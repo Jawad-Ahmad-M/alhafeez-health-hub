@@ -9,8 +9,14 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-3">
-            <span className="glass-dark float-slow flex size-11 items-center justify-center rounded-xl text-lg font-bold">
-              AH
+            <span className="glass-dark float-slow flex h-11 items-center justify-center overflow-hidden rounded-xl px-2.5">
+              <img
+                src={logoAsset.url}
+                alt="Al-Hafeez Specialist Medical Center logo"
+                className="h-7 w-auto"
+                width={160}
+                height={64}
+              />
             </span>
             <div className="leading-tight">
               <p className="font-bold">Al-Hafeez Specialist</p>
