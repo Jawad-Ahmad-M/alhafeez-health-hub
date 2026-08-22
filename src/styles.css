@@ -599,3 +599,40 @@
     transition-duration: 0.001ms !important;
   }
 }
+/* ---------- Auto-scrolling review marquee ---------- */
+@utility marquee {
+  position: relative;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+}
+
+@utility marquee-track {
+  display: flex;
+  width: max-content;
+  padding: 0.75rem 0;
+  animation: marquee-scroll 46s linear infinite;
+}
+
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+  }
+  .marquee {
+    overflow-x: auto;
+  }
+}
