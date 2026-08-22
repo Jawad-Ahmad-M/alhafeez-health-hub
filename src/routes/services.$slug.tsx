@@ -50,30 +50,30 @@ function ServiceDetail() {
   return (
     <>
       <section className="hero-liquid text-primary-foreground">
-        <div className="mx-auto max-w-5xl px-4 py-12 md:py-16">
-          <Link to="/services" className="inline-flex items-center gap-2 text-sm opacity-85 hover:underline">
-            <ArrowLeft className="size-4" aria-hidden /> All departments
+        <div className="mx-auto max-w-5xl px-4 py-10 sm:py-12 md:py-16">
+          <Link to="/services" className="inline-flex items-center gap-1.5 text-xs opacity-85 hover:underline sm:text-sm">
+            <ArrowLeft className="size-3.5 sm:size-4" aria-hidden /> All departments
           </Link>
-          <div className="mt-5 flex items-start gap-4">
-            <span className="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-primary-foreground/15">
-              <DeptIcon name={department.icon} className="size-7" />
+          <div className="mt-4 flex items-start gap-3.5 sm:gap-4">
+            <span className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15 sm:size-14 sm:rounded-2xl">
+              <DeptIcon name={department.icon} className="size-6 sm:size-7" />
             </span>
             <div>
-              <h1 className="text-3xl font-bold sm:text-4xl">{department.name}</h1>
-              <p className="mt-2 max-w-2xl opacity-90">{department.short}</p>
+              <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">{department.name}</h1>
+              <p className="mt-1 text-xs opacity-90 sm:text-base">{department.short}</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-5xl gap-6 px-4 py-12 lg:grid-cols-[1.5fr_1fr]">
-        <div className="glass glass-lift glass-sheen glass-spotlight rounded-3xl p-6">
-          <h2 className="text-lg font-bold text-foreground">About this department</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{department.long}</p>
-          <ul className="mt-6 grid gap-3 text-sm sm:grid-cols-2">
+      <section className="mx-auto grid max-w-5xl gap-6 px-3.5 py-8 sm:px-4 sm:py-12 lg:grid-cols-[1.5fr_1fr]">
+        <div className="glass glass-lift glass-sheen glass-spotlight rounded-2xl p-5 sm:rounded-3xl sm:p-6">
+          <h2 className="text-base font-bold text-foreground sm:text-lg">About this department</h2>
+          <p className="mt-2.5 text-xs leading-relaxed text-muted-foreground sm:text-sm sm:leading-relaxed">{department.long}</p>
+          <ul className="mt-5 grid gap-2.5 text-xs text-muted-foreground sm:mt-6 sm:grid-cols-2 sm:gap-3 sm:text-sm">
             {["Senior consultant led", "Same-day diagnostics", "English & Urdu support", "Free parking on site"].map(
               (item) => (
-                <li key={item} className="flex items-center gap-2 text-muted-foreground">
+                <li key={item} className="flex items-center gap-2">
                   <CheckCircle2 className="size-4 shrink-0 text-primary" aria-hidden /> {item}
                 </li>
               ),
@@ -81,15 +81,15 @@ function ServiceDetail() {
           </ul>
         </div>
 
-        <aside className="h-fit glass glass-sheen rounded-3xl p-6">
-          <h2 className="text-lg font-bold text-foreground">Book a Consultation</h2>
-          <p className="mt-2 text-sm text-muted-foreground">{clinic.hours}</p>
-          <Button asChild className="mt-5 w-full" size="lg">
+        <aside className="h-fit glass glass-sheen rounded-2xl p-5 sm:rounded-3xl sm:p-6">
+          <h2 className="text-base font-bold text-foreground sm:text-lg">Book a Consultation</h2>
+          <p className="mt-1.5 text-xs text-muted-foreground sm:text-sm">{clinic.hours}</p>
+          <Button asChild className="mt-5 h-11 w-full text-sm font-bold shadow-card" size="lg">
             <Link to="/book">
               Book a Consultation
             </Link>
           </Button>
-          <Button asChild variant="outline" size="lg" className="mt-3 w-full">
+          <Button asChild variant="outline" size="lg" className="mt-2.5 h-11 w-full text-sm font-semibold">
             <a href={`tel:${clinic.phoneRaw}`}>
               <Phone className="size-4" aria-hidden /> {clinic.phone}
             </a>
@@ -97,14 +97,14 @@ function ServiceDetail() {
         </aside>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 pb-12">
-        <h2 className="text-2xl font-bold text-foreground">Specialists in {department.name}</h2>
+      <section className="mx-auto max-w-5xl px-3.5 pb-10 sm:px-4 sm:pb-12">
+        <h2 className="text-xl font-bold text-foreground sm:text-2xl">Specialists in {department.name}</h2>
         {docs.length === 0 ? (
-          <p className="mt-4 glass rounded-3xl border border-dashed border-border p-8 text-center text-muted-foreground">
+          <p className="mt-4 glass rounded-2xl border border-dashed border-border/80 p-6 text-center text-xs text-muted-foreground dark:border-white/10 sm:rounded-3xl sm:p-8 sm:text-sm">
             Consultants for this department are available on request — please call {clinic.phone}.
           </p>
         ) : (
-          <div className="mt-6 grid gap-5 sm:grid-cols-2">
+          <div className="mt-5 grid gap-4 sm:gap-5 sm:grid-cols-2">
             {docs.map((doc) => (
               <DoctorCard key={doc.slug} doctor={doc} />
             ))}

@@ -41,44 +41,44 @@ function ResourcesPage() {
   return (
     <>
       <section className="hero-liquid text-primary-foreground">
-        <div className="mx-auto max-w-5xl px-4 py-14 md:py-16">
-          <h1 className="text-3xl font-bold sm:text-4xl">Patient Resources</h1>
-          <p className="mt-3 max-w-2xl opacity-90">
+        <div className="mx-auto max-w-5xl px-4 py-12 md:py-16">
+          <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">Patient Resources</h1>
+          <p className="mt-2.5 max-w-2xl text-sm opacity-90 sm:text-base">
             Practical information to help you prepare for your visit to our centre in Daska.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-5xl px-4 py-12">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="mx-auto max-w-5xl px-3.5 py-8 sm:px-4 sm:py-12">
+        <div className="grid grid-cols-2 gap-3.5 sm:gap-4 lg:grid-cols-4">
           {FACILITIES.map((f) => (
-            <div key={f.title} className="glass glass-lift glass-sheen glass-spotlight rounded-3xl p-5">
-              <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary">
-                <f.icon className="size-5" aria-hidden />
+            <div key={f.title} className="glass glass-lift glass-sheen glass-spotlight rounded-2xl p-4 sm:rounded-3xl sm:p-5">
+              <span className="flex size-10 items-center justify-center rounded-xl bg-accent text-primary sm:size-11">
+                <f.icon className="size-4.5 sm:size-5" aria-hidden />
               </span>
-              <h2 className="mt-4 text-sm font-bold text-foreground">{f.title}</h2>
-              <p className="mt-1 text-sm text-muted-foreground">{f.text}</p>
+              <h2 className="mt-3 text-xs font-bold text-foreground sm:mt-4 sm:text-sm">{f.title}</h2>
+              <p className="mt-1 text-[0.75rem] text-muted-foreground sm:text-sm">{f.text}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 glass glass-sheen rounded-3xl p-6 md:p-8">
-          <h2 className="text-2xl font-bold text-foreground">Frequently asked questions</h2>
+        <div className="mt-8 glass glass-sheen rounded-2xl p-5 sm:mt-12 sm:rounded-3xl sm:p-6 md:p-8">
+          <h2 className="text-xl font-bold text-foreground sm:text-2xl">Frequently asked questions</h2>
           <Accordion type="single" collapsible className="mt-4">
             {faqs.map((f, i) => (
-              <AccordionItem key={f.q} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left text-base font-semibold">{f.q}</AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground">{f.a}</AccordionContent>
+              <AccordionItem key={f.q} value={`faq-${i}`} className="border-border/80 dark:border-white/10">
+                <AccordionTrigger className="text-left text-sm font-semibold sm:text-base">{f.q}</AccordionTrigger>
+                <AccordionContent className="text-xs leading-relaxed text-muted-foreground sm:text-sm">{f.a}</AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
         </div>
 
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 glass-panel rounded-3xl p-6">
+        <div className="mt-6 flex flex-col items-start justify-between gap-4 glass-panel rounded-2xl p-5 sm:mt-8 sm:flex-row sm:items-center sm:rounded-3xl sm:p-6">
           <p className="text-sm font-medium text-foreground">Still have a question? Our reception is happy to help.</p>
-          <div className="flex gap-3">
-            <Button asChild><Link to="/book">Book Appointment</Link></Button>
-            <Button asChild variant="outline">
+          <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row sm:gap-3">
+            <Button asChild className="h-11 font-bold shadow-card sm:h-10"><Link to="/book">Book Appointment</Link></Button>
+            <Button asChild variant="outline" className="h-11 font-semibold sm:h-10">
               <a href={`tel:${clinic.phoneRaw}`}>
                 <Phone className="size-4" aria-hidden /> {clinic.phone}
               </a>

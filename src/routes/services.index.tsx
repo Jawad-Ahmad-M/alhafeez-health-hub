@@ -30,26 +30,26 @@ function ServicesPage() {
   return (
     <>
       <section className="hero-liquid text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-14 md:py-16">
-          <h1 className="text-3xl font-bold sm:text-4xl">Our Medical Departments</h1>
-          <p className="mt-3 max-w-2xl opacity-90">
+        <div className="mx-auto max-w-7xl px-4 py-12 md:py-16">
+          <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">Our Medical Departments</h1>
+          <p className="mt-2.5 max-w-2xl text-sm opacity-90 sm:text-base">
             Comprehensive specialist care and diagnostics under one roof in Daska, Sialkot — organised into four care
             groups.
           </p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl space-y-14 px-4 py-12">
+      <section className="mx-auto max-w-7xl space-y-10 px-4 py-8 sm:space-y-14 sm:py-12">
         {departmentCategories.map((cat) => {
           const depts = departmentsInCategory(cat);
           return (
             <div key={cat.slug}>
-              <div className="flex flex-wrap items-end justify-between gap-3 border-b border-border pb-4">
+              <div className="flex flex-wrap items-end justify-between gap-3 border-b border-border/80 pb-4 dark:border-white/10">
                 <div>
-                  <h2 className="text-2xl font-bold text-foreground">{cat.name}</h2>
-                  <p className="mt-2 max-w-2xl text-sm text-muted-foreground">{cat.blurb}</p>
+                  <h2 className="text-xl font-bold text-foreground sm:text-2xl">{cat.name}</h2>
+                  <p className="mt-1.5 max-w-2xl text-xs text-muted-foreground sm:text-sm">{cat.blurb}</p>
                 </div>
-                <span className="text-sm font-semibold text-primary">{depts.length} departments</span>
+                <span className="text-xs font-semibold text-primary sm:text-sm">{depts.length} departments</span>
               </div>
 
               <div className="card-grid mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -60,16 +60,16 @@ function ServicesPage() {
                       <Link
                         to="/services/$slug"
                         params={{ slug: d.slug }}
-                        className="glass glass-lift glass-sheen glass-spotlight flex h-full flex-col rounded-3xl p-6"
+                        className="glass glass-lift glass-sheen glass-spotlight flex h-full flex-col rounded-3xl p-5 sm:p-6"
                       >
-                        <span className="flex size-12 items-center justify-center rounded-xl bg-accent text-primary">
-                          <DeptIcon name={d.icon} className="size-6" />
+                        <span className="flex size-11 items-center justify-center rounded-xl bg-accent text-primary sm:size-12">
+                          <DeptIcon name={d.icon} className="size-5.5 sm:size-6" />
                         </span>
-                        <h3 className="mt-4 text-lg font-bold text-foreground">{d.name}</h3>
-                        <p className="mt-2 flex-1 text-sm text-muted-foreground">{d.short}</p>
-                        <span className="mt-4 flex items-center justify-between text-sm font-semibold text-primary">
+                        <h3 className="mt-3.5 text-base font-bold text-foreground sm:text-lg">{d.name}</h3>
+                        <p className="mt-1.5 flex-1 text-xs text-muted-foreground sm:text-sm">{d.short}</p>
+                        <span className="mt-4 flex items-center justify-between text-xs font-semibold text-primary sm:text-sm">
                           {count > 0 ? `${count} specialist${count > 1 ? "s" : ""}` : "Consultation available"}
-                          <ArrowRight className="size-4" aria-hidden />
+                          <ArrowRight className="size-3.5 sm:size-4" aria-hidden />
                         </span>
                       </Link>
                     </Reveal>

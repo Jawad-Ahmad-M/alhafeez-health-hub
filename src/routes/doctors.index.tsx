@@ -51,17 +51,17 @@ function DoctorsPage() {
   return (
     <>
       <section className="hero-liquid text-primary-foreground">
-        <div className="mx-auto max-w-7xl px-4 py-14 md:py-16">
-          <h1 className="text-3xl font-bold sm:text-4xl">Our Specialist Team</h1>
-          <p className="mt-3 max-w-2xl opacity-90">Find the right specialist for your health needs.</p>
+        <div className="mx-auto max-w-7xl px-4 py-12 md:py-16">
+          <h1 className="text-2xl font-bold sm:text-3xl md:text-4xl">Our Specialist Team</h1>
+          <p className="mt-2 text-sm opacity-90 sm:text-base">Find the right specialist for your health needs.</p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-4 py-10">
-        <div className="grid gap-4 glass rounded-3xl p-5 sm:grid-cols-[1fr_18rem]">
+      <section className="mx-auto max-w-7xl px-4 py-8 sm:py-10">
+        <div className="grid gap-4 glass rounded-2xl p-4 sm:rounded-3xl sm:p-5 sm:grid-cols-[1fr_18rem]">
           <div>
-            <Label htmlFor="doc-search">Search by name or specialty</Label>
-            <div className="relative mt-1">
+            <Label htmlFor="doc-search" className="text-sm font-semibold">Search by name or specialty</Label>
+            <div className="relative mt-1.5">
               <Search
                 className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
                 aria-hidden
@@ -71,15 +71,15 @@ function DoctorsPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="e.g. Nephrologist or Dr. Ali"
-                className="pl-9"
+                className="h-10.5 pl-9 text-base md:text-sm"
               />
             </div>
           </div>
           <div>
-            <Label htmlFor="doc-specialty">Specialty</Label>
-            <div className="mt-1">
+            <Label htmlFor="doc-specialty" className="text-sm font-semibold">Specialty</Label>
+            <div className="mt-1.5">
               <Select value={specialty} onValueChange={setSpecialty}>
-                <SelectTrigger id="doc-specialty">
+                <SelectTrigger id="doc-specialty" className="h-10.5 text-base md:text-sm">
                   <SelectValue placeholder="All specialties" />
                 </SelectTrigger>
                 <SelectContent>
@@ -100,11 +100,11 @@ function DoctorsPage() {
         </p>
 
         {filtered.length === 0 ? (
-          <p className="mt-10 glass rounded-3xl border border-dashed border-border p-10 text-center text-muted-foreground">
+          <p className="mt-8 glass rounded-2xl border border-dashed border-border/80 p-8 text-center text-sm text-muted-foreground dark:border-white/10 sm:rounded-3xl sm:p-10">
             No doctors match your search. Try a different name or specialty.
           </p>
         ) : (
-        <div className="card-grid mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="card-grid mt-5 grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((doc, i) => (
               <Reveal key={doc.slug} delay={(i % 3) * 60}>
                 <DoctorCard doctor={doc} />

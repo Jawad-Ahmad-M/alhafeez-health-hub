@@ -144,7 +144,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body className="min-h-screen bg-background text-foreground antialiased transition-colors duration-200">
+      <body className="min-h-screen overflow-x-hidden bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary transition-colors duration-200">
         {children}
         <Scripts />
       </body>
@@ -169,7 +169,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="liquid-bg relative flex min-h-screen flex-col pb-16 md:pb-0">
+      <div className="liquid-bg relative flex min-h-screen flex-col pb-20 md:pb-0">
         {deferredUiReady ? <DemoBadge /> : null}
         <Header />
         <main className="flex-1">

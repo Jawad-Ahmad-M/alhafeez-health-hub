@@ -67,35 +67,35 @@ function HomePage() {
           aria-hidden
           className="pointer-events-none absolute -right-16 bottom-0 hidden size-80 rounded-full bg-white/10 blur-3xl [animation-delay:-3s] md:block"
         />
-        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-16 md:pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div className="relative mx-auto grid max-w-7xl gap-8 px-4 pb-20 pt-12 sm:pb-24 sm:pt-16 md:pt-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
             <img
               src={logoImg}
               alt="Al-Hafeez Specialist Medical Center logo"
-              className="mb-7 h-20 w-auto drop-shadow-[0_12px_28px_oklch(0_0_0/0.45)] sm:h-24 md:h-28"
+              className="mb-5 h-16 w-auto drop-shadow-[0_12px_28px_oklch(0_0_0/0.45)] sm:mb-7 sm:h-22 md:h-26"
               width={380}
               height={152}
             />
-            <span className="glass-dark glass-sheen inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.18em]">
+            <span className="glass-dark glass-sheen inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.16em] sm:text-[0.7rem] sm:tracking-[0.18em]">
               <Star className="size-3.5" aria-hidden /> Multi-specialty hospital · Daska
             </span>
-            <h1 className="mt-5 text-4xl font-bold leading-[1.08] sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 text-3xl font-bold leading-[1.12] sm:text-5xl lg:text-6xl">
               Your Health, Our Priority – 27+ Specialists Under One Roof
             </h1>
-            <p className="mt-5 max-w-xl text-base opacity-90 sm:text-lg">
+            <p className="mt-4 max-w-xl text-base opacity-90 sm:text-lg">
               Expert care for Cardiology, Gynaecology, Nephrology &amp; more in Daska.
             </p>
-            <p className="mt-3 text-sm opacity-75">{clinic.nameUrdu}</p>
+            <p className="mt-2.5 text-xs opacity-75 sm:text-sm">{clinic.nameUrdu}</p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Button asChild size="lg" className="h-12 w-full bg-primary-foreground text-primary shadow-card hover:bg-primary-foreground/90 sm:w-auto">
                 <Link to="/book">Book an Appointment</Link>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-primary-foreground/60 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+                className="h-12 w-full border-primary-foreground/60 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground sm:w-auto"
               >
                 <a href={`tel:${clinic.phoneRaw}`}>
                   <Phone className="size-4" aria-hidden /> Call {clinic.phone}
@@ -103,35 +103,35 @@ function HomePage() {
               </Button>
             </div>
 
-            <p className="mt-6 text-sm opacity-80">{clinic.address}</p>
+            <p className="mt-5 text-xs opacity-80 sm:text-sm">{clinic.address}</p>
           </div>
 
-          <Reveal className="glass-dark glass-lift glass-sheen glass-spotlight rounded-[1.75rem] p-6">
-            <h2 className="text-sm font-semibold uppercase tracking-widest opacity-80">Today at a glance</h2>
-            <ul className="mt-4 space-y-4 text-sm">
+          <Reveal className="glass-dark glass-lift glass-sheen glass-spotlight rounded-[1.75rem] p-5 sm:p-6">
+            <h2 className="text-xs font-bold uppercase tracking-widest opacity-80 sm:text-sm">Today at a glance</h2>
+            <ul className="mt-4 space-y-3.5 text-sm">
               <li className="flex items-start gap-3">
                 <Clock className="mt-0.5 size-5 shrink-0" aria-hidden />
                 <span>
-                  <strong className="block">Open now until 11:00 PM</strong>
-                  <span className="opacity-80">{clinic.hours}</span>
+                  <strong className="block font-bold">Open now until 11:00 PM</strong>
+                  <span className="text-xs opacity-80 sm:text-sm">{clinic.hours}</span>
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Stethoscope className="mt-0.5 size-5 shrink-0" aria-hidden />
                 <span>
-                  <strong className="block">Walk-ins welcome</strong>
-                  <span className="opacity-80">Booking recommended to avoid waiting</span>
+                  <strong className="block font-bold">Walk-ins welcome</strong>
+                  <span className="text-xs opacity-80 sm:text-sm">Booking recommended to avoid waiting</span>
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Users className="mt-0.5 size-5 shrink-0" aria-hidden />
                 <span>
-                  <strong className="block">Consultations from PKR 1,500</strong>
-                  <span className="opacity-80">English &amp; Urdu speaking staff</span>
+                  <strong className="block font-bold">Consultations from PKR 1,500</strong>
+                  <span className="text-xs opacity-80 sm:text-sm">English &amp; Urdu speaking staff</span>
                 </span>
               </li>
             </ul>
-            <Button asChild variant="secondary" className="mt-6 w-full">
+            <Button asChild variant="secondary" className="mt-5 h-11 w-full font-bold">
               <Link to="/doctors">
                 Check doctor availability <ArrowRight className="size-4" aria-hidden />
               </Link>
@@ -141,16 +141,16 @@ function HomePage() {
       </section>
 
       {/* Trust bar */}
-      <section className="liquid-bg relative -mt-10 px-4">
-        <div className="glass-panel mx-auto grid max-w-7xl grid-cols-2 gap-6 rounded-3xl px-5 py-8 lg:grid-cols-4">
+      <section className="liquid-bg relative -mt-10 px-3.5 sm:px-4">
+        <div className="glass-panel mx-auto grid max-w-7xl grid-cols-2 gap-3.5 rounded-2xl p-4 sm:gap-6 sm:rounded-3xl sm:px-5 sm:py-8 lg:grid-cols-4">
           {STATS.map((s, i) => (
-            <Reveal key={s.label} delay={i * 70} className="group flex items-center gap-3">
-              <span className="glass flex size-11 shrink-0 items-center justify-center rounded-xl text-primary transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-6">
-                <s.icon className="size-5" aria-hidden />
+            <Reveal key={s.label} delay={i * 70} className="group flex items-center gap-2.5 sm:gap-3">
+              <span className="glass flex size-10 shrink-0 items-center justify-center rounded-xl text-primary transition-transform duration-500 group-hover:-translate-y-1 group-hover:rotate-6 sm:size-11">
+                <s.icon className="size-4.5 sm:size-5" aria-hidden />
               </span>
-              <span>
-                <strong className="block text-lg font-bold leading-tight text-foreground">{s.value}</strong>
-                <span className="text-xs text-muted-foreground">{s.label}</span>
+              <span className="min-w-0">
+                <strong className="block truncate text-base font-bold leading-tight text-foreground sm:text-lg">{s.value}</strong>
+                <span className="block truncate text-[0.7rem] text-muted-foreground sm:text-xs">{s.label}</span>
               </span>
             </Reveal>
           ))}
@@ -158,28 +158,28 @@ function HomePage() {
       </section>
 
       {/* Departments */}
-      <section className="perf-section perf-mobile-lite liquid-bg mx-auto max-w-7xl px-4 py-16 md:py-20">
+      <section className="perf-section perf-mobile-lite liquid-bg mx-auto max-w-7xl px-4 py-12 sm:py-16 md:py-20">
         <div className="max-w-2xl">
           <p className="section-eyebrow">Departments</p>
-          <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Medical Specialties</h2>
-          <p className="mt-3 text-muted-foreground">
+          <h2 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">Medical Specialties</h2>
+          <p className="mt-2.5 text-sm text-muted-foreground sm:text-base">
             21 departments supported by modern diagnostics and 27+ specialist consultants.
           </p>
         </div>
 
-        <div className="card-grid mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="card-grid mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {departmentCategories.map((category, i) => {
             const categoryDepartments = departmentsInCategory(category);
             const firstSlug = categoryDepartments[0]?.slug;
             return (
               <Reveal key={category.slug} delay={i * 70}>
-                <GlassSpotlight className="glass glass-lift glass-sheen glass-spotlight dept-card group flex h-full flex-col rounded-3xl p-5">
+                <GlassSpotlight className="glass glass-lift glass-sheen glass-spotlight dept-card group flex h-full flex-col rounded-3xl p-4 sm:p-5">
                   <h3 className="dept-icon flex items-center gap-2 border-l-4 border-primary pl-3 text-base font-bold text-primary">
                     {category.name}
                   </h3>
                   <ul className="mt-4 flex-1 space-y-0">
                     {categoryDepartments.map((department) => (
-                      <li key={department.slug} className="border-b border-dashed border-border last:border-0">
+                      <li key={department.slug} className="border-b border-dashed border-border/80 last:border-0 dark:border-white/10">
                         <Link
                           to="/services/$slug"
                           params={{ slug: department.slug }}
@@ -212,20 +212,20 @@ function HomePage() {
       </section>
 
       {/* Featured doctors */}
-      <section className="perf-section perf-mobile-lite liquid-bg bg-accent/40 py-16 md:py-20">
+      <section className="perf-section perf-mobile-lite liquid-bg bg-accent/25 py-12 dark:bg-card/40 sm:py-16 md:py-20">
         <div className="mx-auto max-w-7xl px-4">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
               <p className="section-eyebrow">Our team</p>
-              <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Meet Our Specialists</h2>
-              <p className="mt-3 text-muted-foreground">Senior consultants with FCPS and FRCS qualifications.</p>
+              <h2 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">Meet Our Specialists</h2>
+              <p className="mt-2.5 text-sm text-muted-foreground sm:text-base">Senior consultants with FCPS and FRCS qualifications.</p>
             </div>
-            <Button asChild variant="outline">
+            <Button asChild variant="outline" className="w-full sm:w-auto">
               <Link to="/doctors">View all 26 doctors</Link>
             </Button>
           </div>
 
-          <div className="card-grid mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="card-grid mt-8 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
             {featured.map((doc, i) => (
               <Reveal key={doc.slug} delay={i * 80}>
                 <DoctorCard doctor={doc} />
@@ -236,17 +236,19 @@ function HomePage() {
       </section>
 
       {/* Reviews */}
-      <section className="perf-section perf-mobile-lite py-16 md:py-20">
+      <section className="perf-section perf-mobile-lite py-12 sm:py-16 md:py-20">
         <div className="mx-auto flex max-w-7xl flex-col items-center px-4 text-center">
           <p className="section-eyebrow">Patient Reviews</p>
-          <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">
+          <h2 className="mt-2 text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">
             Rated {reviewSummary.rating} / 5 by our patients
           </h2>
-          <div className="mt-3 flex items-center gap-1 text-primary" aria-label={`${reviewSummary.rating} out of 5 stars`}>
-            {[0, 1, 2, 3, 4].map((n) => (
-              <Star key={n} className="size-5 fill-current" aria-hidden />
-            ))}
-            <span className="ml-2 text-sm font-semibold text-muted-foreground">
+          <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 text-primary" aria-label={`${reviewSummary.rating} out of 5 stars`}>
+            <div className="flex gap-0.5">
+              {[0, 1, 2, 3, 4].map((n) => (
+                <Star key={n} className="size-4.5 fill-current" aria-hidden />
+              ))}
+            </div>
+            <span className="ml-1 text-xs font-semibold text-muted-foreground sm:text-sm">
               {reviewSummary.rating} / 5 · {reviewSummary.satisfaction} patient satisfaction · avg wait{" "}
               {reviewSummary.avgWait}
             </span>
@@ -256,23 +258,22 @@ function HomePage() {
         <ReviewMarquee reviews={reviews} />
       </section>
 
-
       {/* CTA */}
-      <section className="mx-auto max-w-7xl px-4">
-        <div className="brand-gradient glass-sheen relative overflow-hidden rounded-[2rem] border border-white/20 px-6 py-12 text-center text-primary-foreground shadow-lift md:px-12">
-          <h2 className="text-2xl font-bold sm:text-3xl">Ready to see a specialist?</h2>
-          <p className="mx-auto mt-3 max-w-xl opacity-90">
+      <section className="mx-auto max-w-7xl px-4 pb-4">
+        <div className="brand-gradient glass-sheen relative overflow-hidden rounded-[2rem] border border-white/20 px-5 py-10 text-center text-primary-foreground shadow-lift sm:px-8 sm:py-12 md:px-12">
+          <h2 className="text-xl font-bold sm:text-2xl md:text-3xl">Ready to see a specialist?</h2>
+          <p className="mx-auto mt-3 max-w-xl text-sm opacity-90 sm:text-base">
             Book online in under a minute, or call us directly — we are open every day from 8:00 AM to 11:00 PM.
           </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90">
+          <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row sm:flex-wrap">
+            <Button asChild size="lg" className="h-12 w-full bg-primary-foreground text-primary shadow-card hover:bg-primary-foreground/90 sm:w-auto">
               <Link to="/book">Book an Appointment</Link>
             </Button>
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="border-primary-foreground/60 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
+              className="h-12 w-full border-primary-foreground/60 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground sm:w-auto"
             >
               <a href={`tel:${clinic.phoneRaw}`}>Call {clinic.phone}</a>
             </Button>

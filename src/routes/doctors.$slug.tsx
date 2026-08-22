@@ -76,12 +76,12 @@ function Card({
   children: React.ReactNode;
 }) {
   return (
-    <div className="glass glass-lift glass-sheen glass-spotlight rounded-3xl p-6">
-      <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
-        <Icon className="size-5 text-primary" aria-hidden />
+    <div className="glass glass-lift glass-sheen glass-spotlight rounded-2xl p-5 sm:rounded-3xl sm:p-6">
+      <h2 className="flex items-center gap-2 text-base font-bold text-foreground sm:text-lg">
+        <Icon className="size-4.5 text-primary sm:size-5" aria-hidden />
         {title}
       </h2>
-      <div className="mt-4">{children}</div>
+      <div className="mt-3.5 sm:mt-4">{children}</div>
     </div>
   );
 }
@@ -98,13 +98,13 @@ function DoctorProfile() {
   return (
     <>
       <section className="hero-liquid text-primary-foreground">
-        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
-          <Link to="/doctors" className="inline-flex items-center gap-2 text-sm opacity-85 hover:underline">
-            <ArrowLeft className="size-4" aria-hidden /> All doctors
+        <div className="mx-auto max-w-6xl px-4 py-10 sm:py-12 md:py-16">
+          <Link to="/doctors" className="inline-flex items-center gap-1.5 text-xs opacity-85 hover:underline sm:text-sm">
+            <ArrowLeft className="size-3.5 sm:size-4" aria-hidden /> All doctors
           </Link>
-          <h1 className="mt-5 text-3xl font-bold sm:text-4xl">{doctor.name}</h1>
-          <p className="mt-2 text-lg opacity-95">{doctor.specialty}</p>
-          {doctor.title && <p className="mt-1 text-sm opacity-85">{doctor.title}</p>}
+          <h1 className="mt-4 text-2xl font-bold sm:text-3xl md:text-4xl">{doctor.name}</h1>
+          <p className="mt-1.5 text-base opacity-95 sm:text-lg">{doctor.specialty}</p>
+          {doctor.title && <p className="mt-1 text-xs opacity-85 sm:text-sm">{doctor.title}</p>}
           <div className="mt-4 flex flex-wrap items-center gap-2">
             {doctor.experienceYears && (
               <span className="inline-flex items-center gap-1.5 rounded-full bg-primary-foreground/15 px-3 py-1 text-xs font-semibold">
@@ -114,8 +114,8 @@ function DoctorProfile() {
             <span
               className={
                 available
-                  ? "inline-flex items-center gap-2 rounded-full bg-primary-foreground/15 px-3 py-1 text-xs font-semibold"
-                  : "inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-semibold opacity-85"
+                  ? "inline-flex items-center gap-1.5 rounded-full bg-primary-foreground/15 px-3 py-1 text-xs font-semibold"
+                  : "inline-flex items-center gap-1.5 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-semibold opacity-85"
               }
             >
               <span className="size-1.5 rounded-full bg-primary-foreground" />

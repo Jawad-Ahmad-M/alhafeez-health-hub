@@ -120,28 +120,28 @@ function BookDoctorPage() {
   return (
     <>
       <section className="hero-liquid text-primary-foreground">
-        <div className="mx-auto max-w-5xl px-4 py-12 md:py-14">
+        <div className="mx-auto max-w-5xl px-4 py-10 sm:py-12 md:py-14">
           <Link
             to="/doctors/$slug"
             params={{ slug: doctor.slug }}
-            className="inline-flex items-center gap-2 text-sm opacity-85 hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs opacity-85 hover:underline sm:text-sm"
           >
-            <ArrowLeft className="size-4" aria-hidden /> Back to profile
+            <ArrowLeft className="size-3.5 sm:size-4" aria-hidden /> Back to profile
           </Link>
-          <h1 className="mt-5 text-3xl font-bold sm:text-4xl">Book an Appointment</h1>
-          <p className="mt-2 text-lg opacity-95">
+          <h1 className="mt-4 text-2xl font-bold sm:text-3xl md:text-4xl">Book an Appointment</h1>
+          <p className="mt-1.5 text-base opacity-95 sm:text-lg">
             {doctor.name} · {doctor.specialty}
           </p>
         </div>
       </section>
 
-      <section className="mx-auto grid max-w-5xl gap-6 px-4 py-12 lg:grid-cols-[1.5fr_1fr]">
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
-          <div className="glass glass-sheen rounded-3xl p-6">
-            <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
-              <CalendarCheck className="size-5 text-primary" aria-hidden /> 1. Choose a date
+      <section className="mx-auto grid max-w-5xl gap-6 px-3.5 py-8 sm:px-4 sm:py-12 lg:grid-cols-[1.5fr_1fr]">
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 sm:space-y-6" noValidate>
+          <div className="glass glass-sheen rounded-2xl p-4.5 sm:rounded-3xl sm:p-6">
+            <h2 className="flex items-center gap-2 text-base font-bold text-foreground sm:text-lg">
+              <CalendarCheck className="size-4.5 text-primary sm:size-5" aria-hidden /> 1. Choose a date
             </h2>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
               Only the days {doctor.name} holds clinic are shown.
             </p>
             {dates.length === 0 ? (
@@ -162,14 +162,16 @@ function BookDoctorPage() {
                       }}
                       className={
                         active
-                          ? "rounded-xl border border-primary bg-primary px-3.5 py-2.5 text-left text-sm font-semibold text-primary-foreground"
-                          : "glass-soft glass-lift rounded-xl px-3.5 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+                          ? "rounded-xl border border-primary bg-primary px-3.5 py-2.5 text-left text-sm font-semibold text-primary-foreground shadow-sm"
+                          : "glass-soft rounded-xl px-3.5 py-2.5 text-left text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary dark:text-foreground/90"
                       }
                     >
-                      <span className="block text-xs uppercase tracking-wide opacity-80">
+                      <span className="block text-[0.68rem] uppercase tracking-wide opacity-80 sm:text-xs">
                         {i === 0 ? "Today" : d.date.toLocaleDateString("en-GB", { weekday: "short" })}
                       </span>
-                      {d.date.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
+                      <span className="font-semibold">
+                        {d.date.toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
+                      </span>
                     </button>
                   );
                 })}
@@ -177,16 +179,16 @@ function BookDoctorPage() {
             )}
           </div>
 
-          <div className="glass glass-sheen rounded-3xl p-6">
-            <h2 className="flex items-center gap-2 text-lg font-bold text-foreground">
-              <Clock className="size-5 text-primary" aria-hidden /> 2. Choose a time
+          <div className="glass glass-sheen rounded-2xl p-4.5 sm:rounded-3xl sm:p-6">
+            <h2 className="flex items-center gap-2 text-base font-bold text-foreground sm:text-lg">
+              <Clock className="size-4.5 text-primary sm:size-5" aria-hidden /> 2. Choose a time
             </h2>
             {activeBlock ? (
-              <p className="mt-1 text-sm text-muted-foreground">
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
                 Clinic hours for this day: {activeBlock.start} – {activeBlock.end}
               </p>
             ) : (
-              <p className="mt-1 text-sm text-muted-foreground">Select a date first.</p>
+              <p className="mt-1 text-xs text-muted-foreground sm:text-sm">Select a date first.</p>
             )}
             <div className="mt-4 flex flex-wrap gap-2">
               {slots.map((t) => {
@@ -201,8 +203,8 @@ function BookDoctorPage() {
                     }}
                     className={
                       active
-                        ? "rounded-full border border-primary bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
-                        : "glass-soft rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary"
+                        ? "rounded-full border border-primary bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm"
+                        : "glass-soft rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary hover:text-primary dark:text-foreground/90"
                     }
                   >
                     {t}
@@ -212,19 +214,19 @@ function BookDoctorPage() {
             </div>
           </div>
 
-          <div className="glass glass-sheen rounded-3xl p-6">
-            <h2 className="text-lg font-bold text-foreground">3. Your details</h2>
+          <div className="glass glass-sheen rounded-2xl p-4.5 sm:rounded-3xl sm:p-6">
+            <h2 className="text-base font-bold text-foreground sm:text-lg">3. Your details</h2>
             <div className="mt-4 grid gap-4 sm:grid-cols-2">
               <div>
-                <Label htmlFor="bk-name">Full name</Label>
-                <Input id="bk-name" className="mt-1" placeholder="e.g. Ahmed Ali" {...register("name")} />
+                <Label htmlFor="bk-name" className="text-sm font-semibold">Full name</Label>
+                <Input id="bk-name" className="mt-1 text-base md:text-sm" placeholder="e.g. Ahmed Ali" {...register("name")} />
                 {errors.name && <p className="mt-1 text-xs font-medium text-destructive">{errors.name.message}</p>}
               </div>
               <div>
-                <Label htmlFor="bk-phone">Phone number</Label>
+                <Label htmlFor="bk-phone" className="text-sm font-semibold">Phone number</Label>
                 <Input
                   id="bk-phone"
-                  className="mt-1"
+                  className="mt-1 text-base md:text-sm"
                   inputMode="tel"
                   placeholder="03XX-XXXXXXX"
                   {...register("phone")}
@@ -232,15 +234,15 @@ function BookDoctorPage() {
                 {errors.phone && <p className="mt-1 text-xs font-medium text-destructive">{errors.phone.message}</p>}
               </div>
               <div>
-                <Label htmlFor="bk-age">Age (optional)</Label>
-                <Input id="bk-age" className="mt-1" inputMode="numeric" placeholder="e.g. 42" {...register("age")} />
+                <Label htmlFor="bk-age" className="text-sm font-semibold">Age (optional)</Label>
+                <Input id="bk-age" className="mt-1 text-base md:text-sm" inputMode="numeric" placeholder="e.g. 42" {...register("age")} />
               </div>
             </div>
             <div className="mt-4">
-              <Label htmlFor="bk-notes">Reason for visit (optional)</Label>
+              <Label htmlFor="bk-notes" className="text-sm font-semibold">Reason for visit (optional)</Label>
               <Textarea
                 id="bk-notes"
-                className="mt-1"
+                className="mt-1 text-base md:text-sm"
                 rows={3}
                 placeholder="Briefly describe your symptoms or reason for the visit"
                 {...register("notes")}
@@ -249,7 +251,7 @@ function BookDoctorPage() {
 
             {slotError && <p className="mt-4 text-sm font-medium text-destructive">{slotError}</p>}
 
-            <Button type="submit" size="lg" className="mt-5 w-full">
+            <Button type="submit" size="lg" className="mt-5 h-12 w-full text-base font-bold shadow-card">
               Confirm Appointment Request
             </Button>
             <p className="mt-3 text-xs text-muted-foreground">
