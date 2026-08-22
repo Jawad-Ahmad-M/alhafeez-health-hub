@@ -1,4 +1,4 @@
-import logoAsset from "@/assets/al-hafeez-logo.png.asset.json";
+import logoImg from "@/assets/al-hafeez-logo.png";
 import { Link } from "@tanstack/react-router";
 import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 
@@ -9,21 +9,15 @@ export function Footer() {
     <footer className="hero-mesh relative mt-16 overflow-hidden border-t border-white/10 text-primary-foreground">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-3">
-            <span className="glass-dark float-slow flex h-11 items-center justify-center overflow-hidden rounded-xl px-2.5">
-              <img
-                src={logoAsset.url}
-                alt="Al-Hafeez Specialist Medical Center logo"
-                className="h-7 w-auto"
-                width={160}
-                height={64}
-              />
-            </span>
-            <div className="leading-tight">
-              <p className="font-bold">Al-Hafeez Specialist</p>
-              <p className="text-xs opacity-80">Medical Center · Daska</p>
-            </div>
-          </div>
+          <Link to="/" className="inline-block transition-transform duration-300 hover:scale-105">
+            <img
+              src={logoImg}
+              alt="Al-Hafeez Specialist Medical Center"
+              className="h-12 w-auto drop-shadow-[0_4px_16px_oklch(0_0_0/0.4)] sm:h-14"
+              width={240}
+              height={92}
+            />
+          </Link>
           <p className="mt-4 text-sm opacity-85">{clinic.nameUrdu}</p>
           <p className="mt-2 text-sm opacity-80">{clinic.tagline}</p>
         </div>

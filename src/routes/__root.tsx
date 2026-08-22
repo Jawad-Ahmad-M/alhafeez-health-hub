@@ -13,7 +13,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { DemoBadge, FloatingWhatsApp } from "@/components/site/FloatingActions";
+import { DemoBadge, FloatingWhatsApp, StickyMobileCTA } from "@/components/site/FloatingActions";
+import { ScrollToTop } from "@/components/site/ScrollToTop";
 import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
@@ -76,11 +77,24 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const themeInitScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('alhafeez-theme');
+    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  } catch (e) {}
+})();
+`;
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { title: "Al-Hafeez Specialist Medical Center — Daska, Sialkot" },
       {
         name: "description",
@@ -94,7 +108,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content: "Multi-specialty hospital in Daska, Sialkot. 21 departments, open 8 AM to 11 PM daily.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/al-hafeez-logo.png" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "/al-hafeez-logo.png" },
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
@@ -110,6 +126,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap",
       },
     ],
+    scripts: [
+      {
+        children: themeInitScript,
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -119,11 +140,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="min-h-screen bg-background text-foreground antialiased transition-colors duration-200">
         {children}
         <Scripts />
       </body>
@@ -142,13 +163,13 @@ function RootComponent() {
       setDeferredUiReady(true);
       return;
     }
-    const id = window.setTimeout(() => setDeferredUiReady(true), 350);
+    const id = window.setTimeout(() => setDeferredUiReady(true), 250);
     return () => window.clearTimeout(id);
   }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="liquid-bg relative flex min-h-screen flex-col">
+      <div className="liquid-bg relative flex min-h-screen flex-col pb-16 md:pb-0">
         {deferredUiReady ? <DemoBadge /> : null}
         <Header />
         <main className="flex-1">
@@ -157,6 +178,8 @@ function RootComponent() {
         </main>
         <Footer />
         {deferredUiReady ? <FloatingWhatsApp /> : null}
+        <ScrollToTop />
+        <StickyMobileCTA />
         <Toaster position="top-center" richColors />
       </div>
     </QueryClientProvider>
