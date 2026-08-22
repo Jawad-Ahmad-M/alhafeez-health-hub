@@ -235,34 +235,26 @@ function HomePage() {
       </section>
 
       {/* Reviews */}
-      <section className="perf-section perf-mobile-lite mx-auto max-w-7xl px-4 py-16 md:py-20">
-        <div className="flex flex-col items-center text-center">
-          <p className="section-eyebrow">Google Reviews</p>
-          <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Rated 4.8 / 5 by our patients</h2>
-          <div className="mt-3 flex items-center gap-1 text-primary" aria-label="4.8 out of 5 stars">
+      <section className="perf-section perf-mobile-lite py-16 md:py-20">
+        <div className="mx-auto flex max-w-7xl flex-col items-center px-4 text-center">
+          <p className="section-eyebrow">Patient Reviews</p>
+          <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">
+            Rated {reviewSummary.rating} / 5 by our patients
+          </h2>
+          <div className="mt-3 flex items-center gap-1 text-primary" aria-label={`${reviewSummary.rating} out of 5 stars`}>
             {[0, 1, 2, 3, 4].map((n) => (
               <Star key={n} className="size-5 fill-current" aria-hidden />
             ))}
-            <span className="ml-2 text-sm font-semibold text-muted-foreground">4.8 / 5 · Google</span>
+            <span className="ml-2 text-sm font-semibold text-muted-foreground">
+              {reviewSummary.rating} / 5 · {reviewSummary.satisfaction} patient satisfaction · avg wait{" "}
+              {reviewSummary.avgWait}
+            </span>
           </div>
         </div>
 
-        <div className="card-grid mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {reviews.map((r, i) => (
-            <Reveal key={r.name} delay={i * 70}>
-              <GlassSpotlight as="figure" className="glass glass-lift glass-sheen glass-spotlight flex h-full flex-col rounded-3xl p-5">
-                <div className="flex gap-0.5 text-primary">
-                  {[0, 1, 2, 3, 4].map((n) => (
-                    <Star key={n} className="size-4 fill-current" aria-hidden />
-                  ))}
-                </div>
-                <blockquote className="mt-3 flex-1 text-sm text-muted-foreground">“{r.text}”</blockquote>
-                <figcaption className="mt-4 text-sm font-semibold text-foreground">— {r.name}</figcaption>
-              </GlassSpotlight>
-            </Reveal>
-          ))}
-        </div>
+        <ReviewMarquee reviews={reviews} />
       </section>
+
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4">
