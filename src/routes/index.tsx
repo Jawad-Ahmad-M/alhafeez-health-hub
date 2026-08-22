@@ -14,6 +14,8 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { DoctorCard } from "@/components/site/DoctorCard";
 import { GlassSpotlight } from "@/components/site/GlassSpotlight";
+import { ReviewMarquee } from "@/components/site/ReviewMarquee";
+import logoAsset from "@/assets/al-hafeez-logo.png.asset.json";
 import {
   clinic,
   departmentCategories,
