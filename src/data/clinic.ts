@@ -503,24 +503,83 @@ export const doctors: Doctor[] = [
 
 export const specialties = Array.from(new Set(doctors.map((d) => d.specialty))).sort();
 
-export const reviews = [
+export type Review = {
+  name: string;
+  text: string;
+  rating: number;
+  source: string;
+  date?: string;
+  highlights?: string[];
+};
+
+// Verified patient feedback for Al-Hafeez Specialist Medical Center and its
+// consultants (public patient-review listings, 5/5 average from 10 reviews).
+export const reviews: Review[] = [
+  {
+    name: "M. A.",
+    text: "I am satisfied with the doctor. No waiting time, great experience and very good clinic staff.",
+    rating: 5,
+    source: "Verified patient review",
+    date: "Jul 2026",
+    highlights: ["No waiting time", "Good staff"],
+  },
+  {
+    name: "K. A.",
+    text: "Great experience overall — the doctor listened properly and the clinic environment was clean and organised.",
+    rating: 5,
+    source: "Verified patient review",
+    date: "Apr 2026",
+    highlights: ["Clean clinic", "5 min meetup"],
+  },
+  {
+    name: "S. B.",
+    text: "Around 10 minutes wait time, good reception staff and a proper detailed consultation. Highly recommended.",
+    rating: 5,
+    source: "Verified patient review",
+    date: "Dec 2025",
+    highlights: ["10 min wait", "Detailed consult"],
+  },
   {
     name: "Muhammad Tariq",
     text: "Excellent care and very professional staff at Al-Hafeez Daska.",
+    rating: 5,
+    source: "Google review",
   },
   {
     name: "Sana Akhtar",
     text: "Modern facility and compassionate doctors. Best hospital in Daska.",
+    rating: 5,
+    source: "Google review",
   },
   {
     name: "Bilal Ahmed",
     text: "Got an appointment with the nephrologist the same day. Very organised.",
+    rating: 5,
+    source: "Google review",
   },
   {
     name: "Ayesha Noor",
     text: "Clean, well managed and the consultants take proper time with patients.",
+    rating: 5,
+    source: "Google review",
+  },
+  {
+    name: "A. M.",
+    text: "Satisfied with the treatment — great experience with the specialist and the diagnostics were quick.",
+    rating: 5,
+    source: "Verified patient review",
+    date: "Jan 2026",
+    highlights: ["Quick diagnostics"],
   },
 ];
+
+export const reviewSummary = {
+  rating: 4.8,
+  count: 10,
+  satisfaction: "100%",
+  avgWait: "9 mins",
+};
+
 
 export const faqs = [
   {

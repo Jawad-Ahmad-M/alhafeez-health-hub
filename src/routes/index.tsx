@@ -14,12 +14,15 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { DoctorCard } from "@/components/site/DoctorCard";
 import { GlassSpotlight } from "@/components/site/GlassSpotlight";
+import { ReviewMarquee } from "@/components/site/ReviewMarquee";
+import logoAsset from "@/assets/al-hafeez-logo.png.asset.json";
 import {
   clinic,
   departmentCategories,
   departmentsInCategory,
   doctors,
   reviews,
+  reviewSummary,
 } from "@/data/clinic";
 
 export const Route = createFileRoute("/")({
@@ -66,6 +69,13 @@ function HomePage() {
         />
         <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pb-24 pt-16 md:pt-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
+            <img
+              src={logoAsset.url}
+              alt="Al-Hafeez Specialist Medical Center logo"
+              className="mb-6 h-16 w-auto drop-shadow-[0_8px_24px_oklch(0_0_0/0.35)] sm:h-20"
+              width={320}
+              height={128}
+            />
             <span className="glass-dark glass-sheen inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[0.7rem] font-bold uppercase tracking-[0.18em]">
               <Star className="size-3.5" aria-hidden /> Multi-specialty hospital · Daska
             </span>
@@ -226,34 +236,26 @@ function HomePage() {
       </section>
 
       {/* Reviews */}
-      <section className="perf-section perf-mobile-lite mx-auto max-w-7xl px-4 py-16 md:py-20">
-        <div className="flex flex-col items-center text-center">
-          <p className="section-eyebrow">Google Reviews</p>
-          <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">Rated 4.8 / 5 by our patients</h2>
-          <div className="mt-3 flex items-center gap-1 text-primary" aria-label="4.8 out of 5 stars">
+      <section className="perf-section perf-mobile-lite py-16 md:py-20">
+        <div className="mx-auto flex max-w-7xl flex-col items-center px-4 text-center">
+          <p className="section-eyebrow">Patient Reviews</p>
+          <h2 className="mt-2 text-3xl font-bold text-foreground sm:text-4xl">
+            Rated {reviewSummary.rating} / 5 by our patients
+          </h2>
+          <div className="mt-3 flex items-center gap-1 text-primary" aria-label={`${reviewSummary.rating} out of 5 stars`}>
             {[0, 1, 2, 3, 4].map((n) => (
               <Star key={n} className="size-5 fill-current" aria-hidden />
             ))}
-            <span className="ml-2 text-sm font-semibold text-muted-foreground">4.8 / 5 · Google</span>
+            <span className="ml-2 text-sm font-semibold text-muted-foreground">
+              {reviewSummary.rating} / 5 · {reviewSummary.satisfaction} patient satisfaction · avg wait{" "}
+              {reviewSummary.avgWait}
+            </span>
           </div>
         </div>
 
-        <div className="card-grid mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {reviews.map((r, i) => (
-            <Reveal key={r.name} delay={i * 70}>
-              <GlassSpotlight as="figure" className="glass glass-lift glass-sheen glass-spotlight flex h-full flex-col rounded-3xl p-5">
-                <div className="flex gap-0.5 text-primary">
-                  {[0, 1, 2, 3, 4].map((n) => (
-                    <Star key={n} className="size-4 fill-current" aria-hidden />
-                  ))}
-                </div>
-                <blockquote className="mt-3 flex-1 text-sm text-muted-foreground">“{r.text}”</blockquote>
-                <figcaption className="mt-4 text-sm font-semibold text-foreground">— {r.name}</figcaption>
-              </GlassSpotlight>
-            </Reveal>
-          ))}
-        </div>
+        <ReviewMarquee reviews={reviews} />
       </section>
+
 
       {/* CTA */}
       <section className="mx-auto max-w-7xl px-4">

@@ -4,6 +4,7 @@ import { Clock, Menu, Phone, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { clinic } from "@/data/clinic";
+import logoAsset from "@/assets/al-hafeez-logo.png.asset.json";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -35,8 +36,14 @@ export function Header() {
       <div className="border-b border-white/40 bg-background/88 shadow-[0_10px_40px_-28px_oklch(0.44_0.19_26/0.5)] backdrop-blur-sm md:bg-background/60 md:backdrop-blur-2xl md:backdrop-saturate-150">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3">
           <Link to="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
-            <span className="brand-gradient glass-sheen flex size-11 shrink-0 items-center justify-center rounded-xl text-lg font-bold text-primary-foreground shadow-card transition-transform duration-500 group-hover:scale-105 group-hover:rotate-3">
-              AH
+            <span className="brand-gradient glass-sheen flex h-11 shrink-0 items-center justify-center overflow-hidden rounded-xl px-2.5 shadow-card transition-transform duration-500 group-hover:scale-105">
+              <img
+                src={logoAsset.url}
+                alt="Al-Hafeez Specialist Medical Center logo"
+                className="h-8 w-auto"
+                width={160}
+                height={64}
+              />
             </span>
             <span className="leading-tight">
               <span className="block text-sm font-bold text-foreground sm:text-base">
