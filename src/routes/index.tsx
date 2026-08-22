@@ -106,32 +106,38 @@ function HomePage() {
             <p className="mt-5 text-xs opacity-80 sm:text-sm">{clinic.address}</p>
           </div>
 
-          <Reveal className="glass-dark glass-lift glass-sheen glass-spotlight rounded-[1.75rem] p-5 sm:p-6">
-            <h2 className="text-xs font-bold uppercase tracking-widest opacity-80 sm:text-sm">Today at a glance</h2>
+          <Reveal className="rounded-3xl border border-white/25 bg-black/35 p-5 text-white shadow-xl backdrop-blur-sm sm:p-6 dark:bg-black/45 dark:border-white/15">
+            <h2 className="text-xs font-extrabold uppercase tracking-widest text-emerald-300 sm:text-sm">Today at a glance</h2>
             <ul className="mt-4 space-y-3.5 text-sm">
               <li className="flex items-start gap-3">
-                <Clock className="mt-0.5 size-5 shrink-0" aria-hidden />
-                <span>
-                  <strong className="block font-bold">Open now until 11:00 PM</strong>
-                  <span className="text-xs opacity-80 sm:text-sm">{clinic.hours}</span>
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-white/15 text-emerald-300">
+                  <Clock className="size-4.5" aria-hidden />
                 </span>
+                <div>
+                  <strong className="block font-bold text-white">Open now until 11:00 PM</strong>
+                  <span className="text-xs text-white/80 sm:text-sm">{clinic.hours}</span>
+                </div>
               </li>
               <li className="flex items-start gap-3">
-                <Stethoscope className="mt-0.5 size-5 shrink-0" aria-hidden />
-                <span>
-                  <strong className="block font-bold">Walk-ins welcome</strong>
-                  <span className="text-xs opacity-80 sm:text-sm">Booking recommended to avoid waiting</span>
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-white/15 text-emerald-300">
+                  <Stethoscope className="size-4.5" aria-hidden />
                 </span>
+                <div>
+                  <strong className="block font-bold text-white">Walk-ins welcome</strong>
+                  <span className="text-xs text-white/80 sm:text-sm">Booking recommended to avoid waiting</span>
+                </div>
               </li>
               <li className="flex items-start gap-3">
-                <Users className="mt-0.5 size-5 shrink-0" aria-hidden />
-                <span>
-                  <strong className="block font-bold">Consultations from PKR 1,500</strong>
-                  <span className="text-xs opacity-80 sm:text-sm">English &amp; Urdu speaking staff</span>
+                <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-white/15 text-emerald-300">
+                  <Users className="size-4.5" aria-hidden />
                 </span>
+                <div>
+                  <strong className="block font-bold text-white">Consultations from PKR 1,500</strong>
+                  <span className="text-xs text-white/80 sm:text-sm">English &amp; Urdu speaking staff</span>
+                </div>
               </li>
             </ul>
-            <Button asChild variant="secondary" className="mt-5 h-11 w-full font-bold">
+            <Button asChild className="mt-5 h-11.5 w-full bg-white font-bold text-primary shadow-md transition-colors hover:bg-white/90">
               <Link to="/doctors">
                 Check doctor availability <ArrowRight className="size-4" aria-hidden />
               </Link>
