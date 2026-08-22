@@ -217,8 +217,7 @@
     linear-gradient(135deg, var(--brand-dark), var(--brand));
 }
 
-/* Liquid-glass hero: brand gradient + two floating glass orbs + sheen sweep.
-   Drop-in replacement for `brand-gradient` on any page hero. */
+/* Fast, beautiful gradient hero with zero GPU blur shaders */
 @utility hero-liquid {
   position: relative;
   overflow: hidden;
@@ -227,28 +226,6 @@
     radial-gradient(55% 75% at 80% 12%, oklch(0.55 0.2 30 / 0.7) 0%, transparent 62%),
     radial-gradient(45% 65% at 12% 88%, oklch(0.33 0.13 27 / 0.85) 0%, transparent 66%),
     linear-gradient(135deg, var(--brand-dark), var(--brand));
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    border-radius: 9999px;
-    background: oklch(1 0 0 / 0.1);
-    filter: blur(56px);
-    pointer-events: none;
-    animation: float-y 8s ease-in-out infinite;
-  }
-  &::before {
-    inset: -3rem auto auto -3rem;
-    width: 16rem;
-    height: 16rem;
-  }
-  &::after {
-    inset: auto -2rem -4rem auto;
-    width: 18rem;
-    height: 18rem;
-    animation-delay: -3s;
-    animation-duration: 10s;
-  }
   & > * {
     position: relative;
     z-index: 1;
@@ -267,8 +244,8 @@
 }
 
 @utility card-hover {
-  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
+    transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
     &:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-lift);
@@ -289,27 +266,15 @@
 }
 
 /* ------------------------------------------------------------------
- * Liquid glass layer — translucent surfaces, sheen, ambient motion.
- * Same brand palette, only presentation.
+ * 0-GPU Fast Card Architecture (100% Solid/Flat by Default on All Devices)
  * ------------------------------------------------------------------ */
 
-/* Apple-style liquid glass: highly translucent, deeply blurred, with a
-   specular top highlight, a refracted bottom edge and a soft ambient
-   shadow. Text stays fully legible thanks to the light frost layer. */
 @utility glass {
   position: relative;
-  isolation: isolate;
   background:
-    radial-gradient(130% 75% at 18% -30%, oklch(1 0 0 / 0.7) 0%, transparent 62%),
-    radial-gradient(85% 60% at 110% 115%, color-mix(in oklab, var(--brand) 7%, transparent) 0%, transparent 62%),
-    linear-gradient(165deg, oklch(1 0 0 / 0.62) 0%, oklch(1 0 0 / 0.42) 55%, oklch(1 0 0 / 0.5) 100%);
-  backdrop-filter: blur(30px) saturate(140%) brightness(1.08);
-  border: 1px solid oklch(1 0 0 / 0.5);
-  box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.75) inset,
-    0 -1px 0 0 color-mix(in oklab, var(--brand) 12%, transparent) inset,
-    0 22px 55px -28px color-mix(in oklab, var(--brand) 45%, transparent),
-    0 2px 8px -4px oklch(0 0 0 / 0.06);
+    linear-gradient(165deg, oklch(1 0 0 / 0.96) 0%, oklch(1 0 0 / 0.88) 100%);
+  border: 1px solid oklch(1 0 0 / 0.65);
+  box-shadow: 0 2px 8px -2px oklch(0 0 0 / 0.06);
   & > * {
     position: relative;
     z-index: 1;
@@ -318,93 +283,68 @@
 
 .dark .glass {
   background:
-    radial-gradient(130% 75% at 18% -30%, oklch(1 0 0 / 0.07) 0%, transparent 62%),
-    radial-gradient(85% 60% at 110% 115%, color-mix(in oklab, var(--brand) 10%, transparent) 0%, transparent 62%),
-    linear-gradient(165deg, oklch(0.19 0.022 260 / 0.88) 0%, oklch(0.15 0.018 260 / 0.82) 100%);
-  backdrop-filter: blur(28px) saturate(130%);
+    linear-gradient(165deg, oklch(0.185 0.022 260 / 0.98) 0%, oklch(0.155 0.018 260 / 0.94) 100%);
   border: 1px solid oklch(1 0 0 / 0.12);
-  box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.12) inset,
-    0 -1px 0 0 color-mix(in oklab, var(--brand) 20%, transparent) inset,
-    0 22px 55px -28px oklch(0 0 0 / 0.65),
-    0 2px 8px -4px oklch(0 0 0 / 0.4);
+  box-shadow: 0 2px 8px -2px oklch(0 0 0 / 0.4);
 }
 
-/* Small inner tile — a lighter glass for nested blocks inside a card. */
+/* Small inner tile — a lighter card for nested blocks */
 @utility glass-soft {
   position: relative;
-  background: linear-gradient(150deg, oklch(1 0 0 / 0.5), color-mix(in oklab, var(--brand-light) 55%, oklch(1 0 0 / 0.25)));
-  backdrop-filter: blur(14px) saturate(160%);
-  border: 1px solid oklch(1 0 0 / 0.45);
-  box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.6) inset,
-    0 10px 24px -18px color-mix(in oklab, var(--brand) 40%, transparent);
+  background: linear-gradient(150deg, oklch(1 0 0 / 0.92), color-mix(in oklab, var(--brand-light) 40%, oklch(1 0 0 / 0.85)));
+  border: 1px solid oklch(1 0 0 / 0.5);
+  box-shadow: 0 1px 4px oklch(0 0 0 / 0.04);
 }
 
 .dark .glass-soft {
-  background: linear-gradient(150deg, oklch(0.24 0.025 260 / 0.75), oklch(0.18 0.02 260 / 0.65));
-  backdrop-filter: blur(14px) saturate(140%);
+  background: linear-gradient(150deg, oklch(0.22 0.025 260 / 0.95), oklch(0.17 0.02 260 / 0.9));
   border: 1px solid oklch(1 0 0 / 0.1);
-  box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.1) inset,
-    0 10px 24px -18px oklch(0 0 0 / 0.5);
+  box-shadow: 0 1px 4px oklch(0 0 0 / 0.3);
 }
 
 @utility glass-panel {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(140deg, oklch(1 0 0 / 0.72) 0%, oklch(1 0 0 / 0.45) 55%, color-mix(in oklab, var(--brand-light) 60%, oklch(1 0 0 / 0.4)) 100%);
-  backdrop-filter: blur(30px) saturate(180%) brightness(1.05);
-  border: 1px solid oklch(1 0 0 / 0.55);
-  box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.75) inset,
-    0 26px 64px -32px color-mix(in oklab, var(--brand) 50%, transparent);
+    linear-gradient(140deg, oklch(1 0 0 / 0.95) 0%, oklch(1 0 0 / 0.85) 100%);
+  border: 1px solid oklch(1 0 0 / 0.65);
+  box-shadow: 0 4px 16px -4px oklch(0 0 0 / 0.08);
 }
 
 .dark .glass-panel {
   background:
-    linear-gradient(140deg, oklch(0.20 0.022 260 / 0.92) 0%, oklch(0.16 0.018 260 / 0.85) 100%);
-  backdrop-filter: blur(28px) saturate(130%);
+    linear-gradient(140deg, oklch(0.19 0.022 260 / 0.98) 0%, oklch(0.16 0.018 260 / 0.94) 100%);
   border: 1px solid oklch(1 0 0 / 0.14);
-  box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.15) inset,
-    0 26px 64px -32px oklch(0 0 0 / 0.7);
+  box-shadow: 0 4px 16px -4px oklch(0 0 0 / 0.5);
 }
 
 @utility glass-dark {
-  background: oklch(1 0 0 / 0.1);
-  backdrop-filter: blur(24px) saturate(160%);
-  border: 1px solid oklch(1 0 0 / 0.22);
-  box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.25) inset,
-    0 24px 60px -28px oklch(0 0 0 / 0.45);
+  background: oklch(1 0 0 / 0.15);
+  border: 1px solid oklch(1 0 0 / 0.25);
+  box-shadow: 0 2px 8px -2px oklch(0 0 0 / 0.15);
 }
 
 .dark .glass-dark {
-  background: oklch(0 0 0 / 0.35);
-  backdrop-filter: blur(24px) saturate(140%);
+  background: oklch(0.14 0.018 260 / 0.9);
   border: 1px solid oklch(1 0 0 / 0.15);
-  box-shadow:
-    0 1px 0 0 oklch(1 0 0 / 0.15) inset,
-    0 24px 60px -28px oklch(0 0 0 / 0.65);
+  box-shadow: 0 2px 8px -2px oklch(0 0 0 / 0.5);
 }
 
 @utility glass-sheen {
   position: relative;
   overflow: hidden;
-  &::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    background: linear-gradient(105deg, transparent 34%, oklch(1 0 0 / 0.4) 50%, transparent 66%);
-    transform: translateX(-120%);
-    transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
-    pointer-events: none;
-    z-index: 2;
-  }
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(105deg, transparent 34%, oklch(1 0 0 / 0.3) 50%, transparent 66%);
+      transform: translateX(-120%);
+      transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+      z-index: 2;
+    }
     &:hover::after {
       transform: translateX(120%);
     }
@@ -412,73 +352,58 @@
 }
 
 .dark .glass-sheen::after {
-  background: linear-gradient(105deg, transparent 34%, oklch(1 0 0 / 0.15) 50%, transparent 66%);
+  background: linear-gradient(105deg, transparent 34%, oklch(1 0 0 / 0.12) 50%, transparent 66%);
 }
 
 @utility glass-lift {
-  transition:
-    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 400ms ease,
-    backdrop-filter 400ms ease;
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 300ms ease;
     &:hover {
-      transform: translateY(-8px) scale(1.015);
-      border-color: oklch(1 0 0 / 0.7);
-      backdrop-filter: blur(34px) saturate(210%) brightness(1.09);
-      box-shadow:
-        0 1px 0 0 oklch(1 0 0 / 0.85) inset,
-        0 -1px 0 0 color-mix(in oklab, var(--brand) 18%, transparent) inset,
-        0 36px 80px -30px color-mix(in oklab, var(--brand) 58%, transparent);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px -16px color-mix(in oklab, var(--brand) 40%, transparent);
     }
   }
 }
 
 .dark .glass-lift {
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     &:hover {
-      border-color: oklch(1 0 0 / 0.25);
-      backdrop-filter: blur(34px) saturate(150%);
-      box-shadow:
-        0 1px 0 0 oklch(1 0 0 / 0.22) inset,
-        0 -1px 0 0 color-mix(in oklab, var(--brand) 35%, transparent) inset,
-        0 36px 80px -30px oklch(0 0 0 / 0.8),
-        0 0 30px -10px color-mix(in oklab, var(--brand) 30%, transparent);
+      transform: translateY(-5px);
+      box-shadow: 0 16px 36px -16px oklch(0 0 0 / 0.8);
     }
   }
 }
 
-/* Department category card — richer hover: gradient halo, icon glow,
-   list items slide in, and the "View departments" link animates. */
+/* Department category card */
 @utility dept-card {
-  & .dept-icon {
-    transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), color 300ms ease;
-  }
-  & .dept-link {
-    transition: color 250ms ease, transform 250ms ease, padding-left 250ms ease;
-  }
-  & .dept-cta {
-    transition: gap 300ms ease, color 250ms ease;
-  }
-  & .dept-cta svg {
-    transition: transform 300ms ease;
-  }
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
+    & .dept-icon {
+      transition: transform 300ms ease, color 300ms ease;
+    }
+    & .dept-link {
+      transition: color 200ms ease, transform 200ms ease, padding-left 200ms ease;
+    }
+    & .dept-cta {
+      transition: gap 250ms ease;
+    }
+    & .dept-cta svg {
+      transition: transform 250ms ease;
+    }
     &:hover {
-      background: color-mix(in oklab, var(--brand-light) 55%, oklch(1 0 0 / 0.7));
+      background: color-mix(in oklab, var(--brand-light) 30%, oklch(1 0 0 / 0.95));
       & .dept-icon {
-        transform: scale(1.1);
+        transform: scale(1.08);
         color: var(--brand);
       }
       & .dept-link {
-        transform: translateX(4px);
+        transform: translateX(3px);
       }
       & .dept-link:hover {
-        padding-left: 0.5rem;
+        padding-left: 0.4rem;
         color: var(--brand);
       }
       & .dept-cta {
-        gap: 0.7rem;
+        gap: 0.6rem;
       }
       & .dept-cta svg {
         transform: translateX(4px);
@@ -488,9 +413,9 @@
 }
 
 .dark .dept-card {
-  @media (hover: hover) {
+  @media (hover: hover) and (pointer: fine) {
     &:hover {
-      background: oklch(0.22 0.025 260 / 0.95);
+      background: oklch(0.20 0.025 260 / 0.98);
       & .dept-icon {
         color: var(--primary);
       }
@@ -503,19 +428,7 @@
 
 @utility liquid-bg {
   position: relative;
-  isolation: isolate;
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background:
-      radial-gradient(42% 48% at 18% 22%, color-mix(in oklab, var(--brand) 38%, transparent) 0%, transparent 72%),
-      radial-gradient(38% 44% at 82% 12%, color-mix(in oklab, var(--brand) 30%, transparent) 0%, transparent 72%),
-      radial-gradient(44% 50% at 70% 88%, color-mix(in oklab, var(--brand) 32%, transparent) 0%, transparent 74%);
-    filter: blur(48px);
-    pointer-events: none;
-  }
+  background-color: var(--background);
 }
 
 .dark .liquid-bg::before {
