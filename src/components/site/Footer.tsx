@@ -1,3 +1,4 @@
+import logoAsset from "@/assets/al-hafeez-logo.png.asset.json";
 import { Link } from "@tanstack/react-router";
 import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 
