@@ -22,6 +22,7 @@ import {
   departmentsInCategory,
   doctors,
   reviews,
+  reviewSummary,
 } from "@/data/clinic";
 
 export const Route = createFileRoute("/")({
