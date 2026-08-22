@@ -85,7 +85,7 @@ export function Header() {
             </Button>
             <button
               type="button"
-              className="inline-flex size-10 items-center justify-center rounded-xl border border-border/80 bg-background/80 text-foreground transition-all hover:bg-accent active:scale-95 dark:border-white/10 dark:bg-card/80 lg:hidden"
+              className="inline-flex size-10 items-center justify-center rounded-xl border border-border/80 bg-secondary/80 text-foreground transition-colors hover:bg-accent active:scale-95 dark:border-white/10 dark:bg-card/80 lg:hidden"
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
@@ -96,7 +96,7 @@ export function Header() {
         </div>
 
         {open && (
-          <nav className="border-t border-border/80 bg-background/98 px-4 pb-5 pt-3 shadow-xl backdrop-blur-2xl dark:border-white/10 dark:bg-card/98 lg:hidden animate-in fade-in slide-in-from-top-2 duration-200" aria-label="Mobile">
+          <nav className="border-t border-border/80 bg-background/98 px-4 pb-5 pt-3 shadow-xl dark:border-white/10 dark:bg-card/98 lg:hidden animate-in fade-in slide-in-from-top-2 duration-200" aria-label="Mobile">
             <ul className="space-y-1.5">
               {NAV.map((item) => (
                 <li key={item.to}>

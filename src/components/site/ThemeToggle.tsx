@@ -14,11 +14,11 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
       onClick={(e) => toggleTheme(e)}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
       title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className={`relative inline-flex size-9.5 items-center justify-center rounded-xl border border-border/80 bg-background/80 text-foreground backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-primary/50 hover:bg-accent hover:text-primary active:scale-95 ${className}`}
+      className={`relative inline-flex size-9.5 items-center justify-center rounded-xl border border-border/80 bg-secondary/70 text-foreground transition-colors hover:border-primary/50 hover:bg-accent hover:text-primary active:scale-95 dark:border-white/10 dark:bg-card/80 ${className}`}
     >
       <div className="relative size-4.5">
         <Sun
-          className={`absolute inset-0 size-4.5 transition-all duration-500 ${
+          className={`absolute inset-0 size-4.5 transition-transform duration-300 ${
             mounted && isDark
               ? "rotate-90 scale-0 opacity-0"
               : "rotate-0 scale-100 opacity-100 text-amber-500"
@@ -26,7 +26,7 @@ export function ThemeToggle({ className = "" }: ThemeToggleProps) {
           aria-hidden
         />
         <Moon
-          className={`absolute inset-0 size-4.5 transition-all duration-500 ${
+          className={`absolute inset-0 size-4.5 transition-transform duration-300 ${
             mounted && isDark
               ? "rotate-0 scale-100 opacity-100 text-sky-400"
               : "-rotate-90 scale-0 opacity-0"
